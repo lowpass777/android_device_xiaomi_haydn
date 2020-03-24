@@ -3,3 +3,6 @@ vendor.xiaomi.hardware.mlipay::IMlipayService                                 u:
 
 # Xiaomi Postproc
 vendor.xiaomi.hardware.campostproc::IMiPostProcService                        u:object_r:hal_camerapostproc_xiaomi_hwservice:s0
+
+# Dolby
+vendor.dolby.hardware.dms::IDms                                     u:object_r:hal_dms_hwservice:s0
