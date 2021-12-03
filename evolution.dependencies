@@ -1,15 +1,15 @@
 [
   {
-    "repository": "kernel_xiaomi_haydn",
+    "repository": "evo_kernel_xiaomi_haydn",
     "target_path": "kernel/xiaomi/haydn",
-    "remote": "pixel-devices",
-    "branch": "twelve"
+    "remote": "lowpass777",
+    "branch": "snow"
   },
   {
-    "repository": "vendor_xiaomi_haydn",
+    "repository": "evo_vendor_xiaomi_haydn",
     "target_path": "vendor/xiaomi/haydn",
-    "remote": "pixel-devices-blobs",
-    "branch": "twelve"
+    "remote": "lowpass777",
+    "branch": "main"
   },
   {
     "repository": "vendor_xiaomi_haydn-miuicamera",

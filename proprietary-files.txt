@@ -1415,7 +1415,7 @@ vendor/etc/thermal-india-class0.conf
 vendor/etc/thermal-india-mgame.conf
 vendor/etc/thermal-india-navigation.conf
 vendor/etc/thermal-india-nolimits.conf
-vendor/etc/thermal-india-normal.conf
+vendor/etc/thermal-india-normal.conf|7acd57ed878b9865b4ef5748575914492256fb16
 vendor/etc/thermal-india-phone.conf
 vendor/etc/thermal-india-tgame.conf
 vendor/etc/thermal-india-video.conf
@@ -1424,7 +1424,7 @@ vendor/etc/thermal-map-india.conf
 vendor/etc/thermal-mgame.conf
 vendor/etc/thermal-navigation.conf
 vendor/etc/thermal-nolimits.conf
-vendor/etc/thermal-normal.conf
+vendor/etc/thermal-normal.conf|98d4cf4d40dbd5529dcd26669caee0b4de4f1c03
 vendor/etc/thermal-per-camera.conf
 vendor/etc/thermal-per-class0.conf
 vendor/etc/thermal-per-navigation.conf
