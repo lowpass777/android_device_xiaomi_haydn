@@ -172,7 +172,8 @@ PRODUCT_PACKAGES += \
     memtrack.default
 
 PRODUCT_PACKAGES += \
-    libdisplayconfig.qti
+    libdisplayconfig.qti \
+    libdisplayconfig.qti.vendor
 
 PRODUCT_PACKAGES += \
     vendor.display.config@1.15.vendor \
@@ -282,7 +283,6 @@ PRODUCT_PACKAGES += \
 # Livedisplay
 PRODUCT_PACKAGES += \
     vendor.lineage.livedisplay@2.0-service-sdm
-    vendor.lineage.livedisplay@2.1-service.xiaomi_sm8350
 
 # Media
 PRODUCT_PACKAGES += \
@@ -416,7 +416,7 @@ PRODUCT_SOONG_NAMESPACES += \
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay \
-    $(LOCAL_PATH)/overlay-evolution
+    $(LOCAL_PATH)/overlay-lineage
 
 PRODUCT_ENFORCE_RRO_TARGETS += *
 
