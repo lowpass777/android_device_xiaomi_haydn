@@ -17,4 +17,10 @@
     "remote": "pixel-devices-blobs",
     "branch": "twelve"
   }
+  {
+    "repository" : "vendor_xiaomi_sdm845-common-extra",
+    "target_path": "vendor/xiaomi/sdm845-common-extra",
+    "branch"     : "twelve",
+    "remote"     : "pixel-devices-blobs"
+  },
 ]

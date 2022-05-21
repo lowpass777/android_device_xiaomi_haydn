@@ -1,3 +1,18 @@
 type touchfeature_device, dev_type;
 
 allow hal_power_default touchfeature_device:chr_file rw_file_perms;
+
+allow hal_power_default {
+  sysfs_touchpanel
+}:dir search;
+
+allow hal_power_default {
+  cgroup
+  proc
+  sysfs_touchpanel
+
+}:{
+  file
+  lnk_file
+} rw_file_perms;
+

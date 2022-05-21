@@ -10,6 +10,7 @@ persist.vendor.dpm.feature=11
 
 # Graphics
 debug.sf.enable_hwc_vds=1
+debug.sf.disable_backpressure=1
 
 # IMS
 persist.dbg.volte_avail_ovr=1
@@ -24,10 +25,12 @@ ro.lmk.log_stats=true
 media.settings.xml=/vendor/etc/media_profiles_vendor.xml
 ro.media.recorder-max-base-layer-fps=60
 
-# Netflix
-ro.netflix.bsp_rev=Q875-32408-1
-
 # QC framework value-adds
 ro.vendor.qti.va_aosp.support=1
 
+# Zygote
+persist.device_config.runtime_native.usap_pool_enabled=true
 
+# IO Prefetcher
+vendor.iop.enable_prefetch_ofr=1
+vendor.iop.enable_uxe=1

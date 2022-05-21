@@ -1,0 +1,12 @@
+allow untrusted_app vendor_sysfs_devfreq:dir { search };
+allow untrusted_app vendor_sysfs_kgsl_gpuclk:file { read };
+allow untrusted_app vendor_sysfs_kgsl_gpuclk:file { open };
+allow untrusted_app vendor_sysfs_kgsl_gpuclk:file { getattr };
+allow untrusted_app cgroup_desc_file:file { getattr };
+allow untrusted_app system_bootstrap_lib_file:dir { getattr };
+allow untrusted_app proc_zoneinfo:file { read };
+allow untrusted_app proc_kmsg:file { getattr };
+allow untrusted_app proc_misc:file { getattr };
+allow untrusted_app cgroup:file { read };
+allow untrusted_app media_rw_data_file:file { relabelfrom };
+allow untrusted_app media_rw_data_file:file { relabelto };

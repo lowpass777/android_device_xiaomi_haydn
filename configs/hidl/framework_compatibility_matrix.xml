@@ -19,14 +19,23 @@
         <instance>gnss_vendor</instance>
     </interface>
 </hal>
-<hal format="hidl">
-    <name>android.hardware.media.c2</name>
-    <version>1.0</version>
-    <interface>
+<hal format="hidl" optional="true">
+     <name>android.hardware.media.c2</name>
+     <version>1.0</version>
+     <interface>
         <name>IComponentStore</name>
+        <instance>default</instance>
         <instance>software</instance>
+     </interface>
+ </hal>
+    <hal format="hidl" optional="true">
+     <name>android.hardware.media.c2</name>
+     <version>1.0</version>
+     <interface>
+         <name>IComponentStore</name>
+         <instance>dolby</instance>
     </interface>
-</hal>
+ </hal>
 <hal format="hidl">
     <name>android.hardware.radio</name>
     <version>1.0-2</version>
@@ -471,4 +480,13 @@
         <instance>default</instance>
     </interface>
 </hal>
+    <hal format="hidl">
+        <name>vendor.lineage.livedisplay</name>
+        <transport>hwbinder</transport>
+        <version>2.0</version>
+        <interface>
+            <name>IPictureAdjustment</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
 </compatibility-matrix>

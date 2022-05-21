@@ -127,6 +127,7 @@ vendor.bluetooth.soc=hastings
 
 # Camera
 camera.disable_zsl_mode=true
+ro.hardware.camera=xiaomi
 
 # Chipset
 ro.soc.manufacturer=QTI
@@ -164,17 +165,12 @@ debug.mdpcomp.logs=0
 debug.renderengine.backend=skiaglthreaded
 debug.sf.disable_client_composition_cache=1
 debug.sf.enable_advanced_sf_phase_offset=1
-debug.sf.enable_gl_backpressure=1
-debug.sf.high_fps_early_gl_phase_offset_ns=-4000000
+debug.sf.high_fps_early_gl_phase_offset_ns=-2000000
 debug.sf.high_fps_early_phase_offset_ns=-4000000
 debug.sf.high_fps_late_app_phase_offset_ns=1000000
-debug.sf.high_fps_late_sf_phase_offset_ns=-4000000
+debug.sf.high_fps_late_sf_phase_offset_ns=-2000000
 debug.sf.hw=0
-debug.sf.latch_unsignaled=0
 debug.sf.set_idle_timer_ms=3000c
-persist.sys.sf.color_mode=9
-persist.sys.sf.color_saturation=1.0
-persist.sys.sf.native_mode=2
 ro.gfx.driver.1=com.qualcomm.qti.gpudrivers.lahaina.api30
 renderthread.skia.reduceopstasksplitting=truepi30
 ro.hardware.egl=adreno
@@ -249,9 +245,6 @@ ro.vendor.perf.scroll_opt=0
 # Qcom
 ro.vendor.qti.sys.fw.bservice_enable=true
 
-# Qcomsysd
-persist.vendor.qcomsysd.enabled=1
-
 # Radio
 DEVICE_PROVISIONED=1
 keyguard.no_require_sim=true
@@ -304,3 +297,7 @@ vendor.usb.use_ffs_mtp=1
 
 # Wifi
 wifi.aware.interface=wifi-aware0
+
+# Test
+ro.sf.blurs_are_expensive=1
+ro.surface_flinger.supports_background_blur=1

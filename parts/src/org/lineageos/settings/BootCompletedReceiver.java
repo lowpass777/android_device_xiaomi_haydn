@@ -20,18 +20,32 @@ package org.lineageos.settings;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.util.Log;
+import androidx.preference.PreferenceManager;
 
 import org.lineageos.settings.doze.DozeUtils;
+import org.lineageos.settings.display.KcalUtils;
+import org.lineageos.settings.refreshrate.RefreshUtils;
 
 public class BootCompletedReceiver extends BroadcastReceiver {
-
     private static final boolean DEBUG = false;
     private static final String TAG = "XiaomiParts";
 
     @Override
     public void onReceive(final Context context, Intent intent) {
-        if (DEBUG) Log.d(TAG, "Received boot completed intent");
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+
+        if (DEBUG)
+            Log.d(TAG, "Received boot completed intent");
+        // KCAL
+        if (KcalUtils.isKcalSupported())
+            KcalUtils.writeCurrentSettings(sharedPrefs);
+
+        // Doze
         DozeUtils.checkDozeService(context);
+
+        // Refresh rate
+        RefreshUtils.startService(context);
     }
 }

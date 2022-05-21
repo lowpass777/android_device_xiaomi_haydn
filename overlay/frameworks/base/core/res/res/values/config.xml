@@ -493,40 +493,11 @@
         <item>4500</item>
     </integer-array>
 
-    <!-- Indicate available ColorDisplayManager.COLOR_MODE_xxx. -->
+    <!-- List supported color modes. -->
     <integer-array name="config_availableColorModes">
-        <item>0</item>
-        <item>1</item>
-        <item>3</item>
-    </integer-array>
-
-    <!-- Color mode to use when accessibility transforms are enabled. This color mode must be
-         supported by the device, but not necessarily appear in config_availableColorModes. The
-         regularly selected color mode will be used if this value is negative. -->
-    <integer name="config_accessibilityColorMode">2</integer>
-
-    <!-- The following two arrays specify which color space to use for display composition when a
-         certain color mode is active.
-         Composition color spaces are defined in android.view.Display.COLOR_MODE_xxx, and color
-         modes are defined in ColorDisplayManager.COLOR_MODE_xxx and
-         ColorDisplayManager.VENDOR_COLOR_MODE_xxx.
-         The color space COLOR_MODE_DEFAULT (0) lets the system select the most appropriate
-         composition color space for currently displayed content. Other values (e.g.,
-         COLOR_MODE_SRGB) override system selection; these other color spaces must be supported by
-         the device for for display composition.
-         If a color mode does not have a corresponding color space specified in this array, the
-         currently set composition color space will not be modified.-->
-    <integer-array name="config_displayCompositionColorModes">
-        <item>0</item> <!-- COLOR_MODE_NATURAL   -->
-        <item>1</item> <!-- COLOR_MODE_BOOSTED   -->
-        <item>2</item> <!-- COLOR_MODE_SATURATED -->
+        <item>0</item> <!-- COLOR_MODE_NATURAL -->
+        <item>1</item> <!-- COLOR_MODE_BOOSTED -->
         <item>3</item> <!-- COLOR_MODE_AUTOMATIC -->
-    </integer-array>
-    <integer-array name="config_displayCompositionColorSpaces">
-        <item>0</item> <!-- COLOR_MODE_DEFAULT    -->
-        <item>0</item> <!-- COLOR_MODE_DEFAULT    -->
-        <item>0</item> <!-- COLOR_MODE_DEFAULT    -->
-        <item>9</item> <!-- COLOR_MODE_DISPLAY_P3 -->
     </integer-array>
 
     <!-- Default files to pin via Pinner Service -->
@@ -535,16 +506,8 @@
         <item>/system/framework/services.jar</item>
         <item>/apex/com.android.art/javalib/core-oj.jar</item>
         <item>/apex/com.android.art/javalib/core-libart.jar</item>
-        <item>/apex/com.android.media/javalib/updatable-media.jar</item>
         <item>/system_ext/priv-app/SystemUI/SystemUI.apk</item>
         <item>/system/bin/surfaceflinger</item>
-        <item>/system/lib64/libRScpp.so</item>
-        <item>/system/lib64/libRS.so</item>
-        <item>/system/lib64/libRS_internal.so</item>
-        <item>/system/lib64/libbcinfo.so</item>
-        <item>/system/lib64/libRSDriver.so</item>
-        <item>/system/lib64/libRSCpuRef.so</item>
-        <item>/system/lib64/libblas.so</item>
     </string-array>
 
     <!-- Configure mobile tcp buffer sizes in the form:
@@ -738,10 +701,35 @@
          Settings.System.NOTIFICATION_VIBRATION_INTENSITY more details on the constant values and
          meanings. -->
     <integer name="config_defaultNotificationVibrationIntensity">3</integer>
-
     <!-- The default intensity level for notification vibrations. See
          Settings.System.RING_VIBRATION_INTENSITY more details on the constant values and
          meanings. -->
     <integer name="config_defaultRingVibrationIntensity">3</integer>
+
+    <!-- Enables or disables haptic effect when the text insertion/selection handle is moved
+         manually by the user. Off by default, since the expected haptic feedback may not be
+         available on some devices. -->
+    <bool name="config_enableHapticTextHandle">true</bool>
+
+    <!-- Flag indicating whether the surface flinger has limited
+         alpha compositing functionality in hardware.  If set, the window
+         manager will disable alpha trasformation in animations where not
+         strictly needed. -->
+    <bool name="config_sf_limitedAlpha">true</bool>
+
+    <!-- Enables or disables fading edges when marquee is enabled in TextView.
+         Off by default, since the framebuffer readback used to implement the
+         fading edges is prohibitively expensive on most GPUs. -->
+    <bool name="config_ui_enableFadingMarquee">true</bool>
+
+    <!-- WA for lags caused by blur/ qs and ls album art filter etc.. -->
+    <bool name="config_sf_slowBlur">false</bool> 
+
+    <!-- Amount of time in ms the user needs to press the relevant keys to trigger the
+         screenshot chord -->
+    <integer name="config_screenshotChordKeyTimeout">0</integer>
+
+    <!-- the number of the max cached processes in the system. -->
+    <integer name="config_customizedMaxCachedProcesses">80</integer>
 
 </resources>

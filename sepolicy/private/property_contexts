@@ -1,0 +1,5 @@
+# Device Parts
+persist.xiaomiparts.                   u:object_r:xiaomiparts_prop:s0
+
+# SettingsLib
+settingsdebug.instant.packages u:object_r:settingslib_prop:s0

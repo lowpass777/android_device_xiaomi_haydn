@@ -711,6 +711,9 @@ vendor/lib64/libcvp_common.so
 vendor/lib64/libcvpcpuRev_skel.so
 vendor/lib64/vendor.qti.hardware.cvp@1.0.so
 
+# Display (HWC)
+vendor/lib64/libdisplayconfig.qti.so
+
 # Display-calibration
 vendor/etc/display/DPU660.xml
 vendor/etc/display/DPU670.xml
@@ -720,23 +723,23 @@ vendor/etc/ltm_config_xiaomi_38_08_0a_cmd_mode_dsc_dsi_panel.xml
 vendor/etc/mdss_dsi_k11_38_08_0a_dsc_cmd_mi.xml
 vendor/etc/qdcm_calib_data_xiaomi_38_08_0a_cmd_mode_dsc_dsi_panel.xml
 
-# Display (HDR) - LA.UM.9.14.r1-16700-LAHAINA.0
-vendor/lib64/libhdr_tm.so|1102137c99d54609f9eb2b1b5495a9e8f044b396
+# Display (HDR) - LA.UM.9.14.r1-18900-LAHAINA.QSSI12.0
+vendor/lib64/libhdr_tm.so|7954c5cd5c0b23fe8d0609361c22d24c59f1448b
 
-# Display (SDM) - LA.UM.9.14.r1-16700-LAHAINA.0
-vendor/lib64/libdisplayqos.so|fd1704d31d1f567952500f32ed8b6496024b11ba
-vendor/lib64/libdisplayskuutils.so|f1cceb91b2afc210444b543b9f11a824537bff5b
-vendor/lib64/libdpps.so|299b2a604f1546e59e3fdaf4c2f7e12bc2c9b79a
+# Display (SDM) - LA.UM.9.14.r1-18900-LAHAINA.QSSI12.0
+vendor/lib64/libdisplayqos.so|aa222f4c1a2d2fb60944c44f8a82621d6bc75184
+vendor/lib64/libdisplayskuutils.so|5afcd261783ca109c9d63e8d08c879b76fb4efd6
+vendor/lib64/libdpps.so|a5ef371c8df8af548db93adbd8757d2bf3c73da8
 vendor/lib64/libqdcm-mode-parser.so|207143ab4dda0886bde2a0333d7a1bcd7af6f8e1
 vendor/lib64/libqseed3.so|d62c37baf259250cadfcff8734e82054ed87bb96
-vendor/lib64/librcmask.so|140550a78090ddfca790c1c3331f63da128be7d5
-vendor/lib64/libsdm-color.so|b8d69ac24d482033f4f059b849f4f6dbe3970626
-vendor/lib64/libsdm-colormgr-algo.so|96c3f3e62453e580dfab8f06b0e92d340207e255
-vendor/lib64/libsdm-diag.so|70a6e1ba046679d1e715e6cdafa13a6f70ff15d1
+vendor/lib64/librcmask.so|bd022c259cf8fe64b8e7efef04ec614f499eec03
+vendor/lib64/libsdm-color.so|aeb07689c1bfc885ef9c846c0148e6f1e3f7f0ac
+vendor/lib64/libsdm-colormgr-algo.so|5416a3b9b0735099c9b86f451f41386711787ea4
+vendor/lib64/libsdm-diag.so|720089c4bc66897e1bfd84e7983b3c34f2c4eec8
 vendor/lib64/libsdm-disp-vndapis.so|dc3ff8c971bbcb0d1b9e5079324d1d1d05a1fd39
-vendor/lib64/libsdmextension.so|8c6b2dbf4bf2c21aa34246cbd22d494723de58aa
-vendor/lib64/libsnapdragoncolor-manager.so|0eed8af5f75003144acf7a64387382da275b57f3
-vendor/lib64/libsnapdragoncolor-qdcm.so|66e100714fc1b260e902453fe6746953e500ccb5
+vendor/lib64/libsdmextension.so|85d04d20a022d79134eeba08bb4ec139d59e3479
+vendor/lib64/libsnapdragoncolor-manager.so|e7f55a1ba843bb570afa6bbf16bb61dc01ec74ea
+vendor/lib64/libsnapdragoncolor-qdcm.so|673c41753603bacb197674df567723dfd928384e
 vendor/lib64/libtinyxml2_1.so|11ceb3f1e7650c41621d47e5ec5567c8f466086e
 
 # Display calibration
@@ -828,26 +831,47 @@ vendor/etc/init/android.hardware.gatekeeper@1.0-service-qti.rc
 vendor/lib64/hw/android.hardware.gatekeeper@1.0-impl-qti.so
 
 # GNSS
+vendor/bin/hw/android.hardware.gnss@2.1-service-qti
 vendor/bin/loc_launcher
 vendor/bin/lowi-server
 vendor/bin/mlid
+vendor/bin/slim_daemon
 vendor/bin/xtra-daemon
+vendor/bin/xtwifi-client
+vendor/bin/xtwifi-inet-agent
+vendor/etc/init/android.hardware.gnss@2.1-service-qti.rc
+-vendor/etc/vintf/manifest/android.hardware.gnss@2.1-service-qti.xml
 -vendor/etc/vintf/manifest/vendor.qti.gnss@4.0-service.xml
+vendor/etc/cacert_location.pem
+vendor/etc/xtra_root_cert.pem
+vendor/lib64/hw/android.hardware.gnss@2.1-impl-qti.so
 vendor/lib64/hw/vendor.qti.gnss@4.0-impl.so
 vendor/lib64/libaoa.so
+vendor/lib64/libbatching.so
 vendor/lib64/libdataitems.so
+vendor/lib64/libgdtap.so
+vendor/lib64/libgeofencing.so
+vendor/lib64/libgnss.so
+vendor/lib64/libgnsspps.so
+vendor/lib64/libgps.utils.so
 vendor/lib64/libizat_client_api.so
 vendor/lib64/libizat_core.so
 vendor/lib64/liblbs_core.so
 vendor/lib64/libloc_api_v02.so
+vendor/lib64/libloc_core.so
 vendor/lib64/libloc_socket.so
+vendor/lib64/liblocation_api.so
 vendor/lib64/liblocationservice.so
 vendor/lib64/liblocationservice_glue.so
 vendor/lib64/liblowi_client.so
 vendor/lib64/liblowi_wifihal.so
 vendor/lib64/libqcc_file_agent.so
+vendor/lib64/libqdma_file_agent.so
+vendor/lib64/libslimclient.so
 vendor/lib64/libsynergy_loc_api.so
 vendor/lib64/libxtadapter.so
+vendor/lib64/libxtwifi_server_protocol.so
+vendor/lib64/libxtwifi_server_protocol_uri_v3.so
 vendor/lib64/vendor.qti.gnss@1.0.so
 vendor/lib64/vendor.qti.gnss@1.1.so
 vendor/lib64/vendor.qti.gnss@1.2.so
@@ -857,52 +881,67 @@ vendor/lib64/vendor.qti.gnss@3.0.so
 vendor/lib64/vendor.qti.gnss@4.0-service.so
 vendor/lib64/vendor.qti.gnss@4.0.so
 
+# GNSS configs
+vendor/etc/apdr.conf
+vendor/etc/flp.conf
+vendor/etc/gps.conf
+vendor/etc/izat.conf
+vendor/etc/lowi.conf
+vendor/etc/sap.conf
+vendor/etc/xtwifi.conf
+
 # Graphics
 -vendor/app/com.qualcomm.qti.gpudrivers.lahaina.api30/com.qualcomm.qti.gpudrivers.lahaina.api30.apk;PRESIGNED
 
 # Graphics (Adreno) - from konabess v615
 vendor/lib/egl/eglSubDriverAndroid.so|a3d76c8abd204ba4d5509792c4662a63c967cb79
-vendor/lib/egl/libEGL_adreno.so|d86e18b7ff4c9bc1730fa088b2cbfb4c6e4a95f9
+vendor/lib/egl/libEGL_adreno.so|a3d76c8abd204ba4d5509792c4662a63c967cb79
 vendor/lib/egl/libGLESv1_CM_adreno.so|8ab84e1b996669d9a5dffbf1bd3e9d99c4d921ed
-vendor/lib/egl/libGLESv2_adreno.so|c9f37a62c2bf34d9fb532c1f43820a8c3566bfc8
-vendor/lib/egl/libVkLayer_ADRENO_qprofiler.so|412ca1180fbf09cd4e9d9837db635782ebdd7bb1
+vendor/lib/egl/libGLESv2_adreno.so|f3b76aac8e9abd557dba32324861511b60d79acc
+vendor/lib/egl/libVkLayer_ADRENO_qprofiler.so|a8853d36cbeccdbe302974d7f74f8846d1738a28
 vendor/lib/egl/libq3dtools_adreno.so|e1f7eab8eaa3c58d6b8e2ba9ed557205533ceb36
-vendor/lib/egl/libq3dtools_esx.so|091c2d76fc50a93114a3f5f3de3cbf25ed31e252
+vendor/lib/egl/libq3dtools_esx.so|76e52e4c0a2e804d9e26ef292cadf22c491935ed
+
 vendor/lib/libC2D2.so|f151ffcf2038152e39d5087d78e19f0a40f4797e
-vendor/lib/libCB.so|1286cd1afb682a73bcb110b7111b16af858a045e
+vendor/lib/libCB.so|a9aac75fe3fe471e7e3539b7a0346546875afddb
 vendor/lib/libOpenCL.so|cf65ca87cc0f6b1a77b437db1a2539cb3399d1e8
 vendor/lib/libVkLayer_q3dtools.so|1427c8f65de3d3f9e11acf758443772021fccf7c
-vendor/lib/libadreno_app_profiles.so|8d76185370962599216f15bbdab7729f82ebce0d
-vendor/lib/libadreno_utils.so|da74695dc91a0c4c52a0d021b5e814b146f404c1
+
+vendor/lib/libadreno_app_profiles.so|4a01218c7ff5c10f7a8b7966691fde2448fba4db
+vendor/lib/libadreno_utils.so|f88b48e1f6a54f2d7f80c1403467ca5d251565db
 vendor/lib/libc2d30_bltlib.so|776dce439b03ef8c5342fc445f361c33d1df73a4
-vendor/lib/libgpudataproducer.so|a112a7729a15cc11c2324a9f228fe3384a348866
-vendor/lib/libgsl.so|31764add9172fc43b40dde5674dd98e6af16396f
-vendor/lib/libllvm-glnext.so|80ccac5f265f47699b7c6cbf01ef040a0913801d
-vendor/lib/libllvm-qcom.so|ea8d69697a90493f560e6497df468a3848304a7a
-vendor/lib/libllvm-qgl.so|90cf4f313ac14de904f5414a6412e22f5cc02739
+vendor/lib/libgpudataproducer.so|2211d9a2e72b773860d9a16668654d00268c8882
+vendor/lib/libgsl.so|b78cdeb53486b9e08874e60b7d007ff34a393a3d
+vendor/lib/libllvm-glnext.so|53e8c460f16a00319972cb7c680955a14f0bf903
+vendor/lib/libllvm-qcom.so|b00b3d5e5cb9b6c68c7d9d720500083580b8cdcd
+vendor/lib/libllvm-qgl.so|bfc0b40e9d08aca9b06b2e5287d058808049b68b
+
 vendor/lib64/egl/eglSubDriverAndroid.so|9bcc9af81f6bd5cb0b45a56257375225b7793415
-vendor/lib64/egl/libEGL_adreno.so|5ffb762e012f62a9522a34a95092dfa458f04e9b
+vendor/lib64/egl/libEGL_adreno.so|c821c7f88c2eeddd4d001ba9eacf696763160d3e
 vendor/lib64/egl/libGLESv1_CM_adreno.so|3b0ef0ba99b9d1fa91c95942cb2042b60e4d63d3
-vendor/lib64/egl/libGLESv2_adreno.so|237fda9d20b01c09154141342e0d789ffe344d6a
-vendor/lib64/egl/libVkLayer_ADRENO_qprofiler.so|bc869505b8e76ab9e458bcba21cc363bf5f100e9
+vendor/lib64/egl/libGLESv2_adreno.so|8debb9d276586009e23c7f1f072f83a263709744
+vendor/lib64/egl/libVkLayer_ADRENO_qprofiler.so|c0215b6339dc5371f8c5320ad856b9e3ad27c1c1
 vendor/lib64/egl/libq3dtools_adreno.so|169f0359a8654d527087da6ca947535211883f63
-vendor/lib64/egl/libq3dtools_esx.so|3a6b271569ccef82d8079262093458d27c36108c
+vendor/lib64/egl/libq3dtools_esx.so|4f96847ff7ddc79e7c67d51bb884aa00d7b7caff
+
 vendor/lib64/libC2D2.so|a1e3d73f3f6314a708ae1a567afd0772a518da3b
-vendor/lib64/libCB.so|ce5e840975f11edb1a2dfe3953ece8e3f64b3402
+vendor/lib64/libCB.so|303ddd92c73a97ea77d378d920643e010c2469bb
 vendor/lib64/libOpenCL.so|43309f30ecef13276076e9368d691d062d84f6dc
 vendor/lib64/libVkLayer_q3dtools.so|8b15dd18245ee61c3872173da937868091b0f70b
-vendor/lib64/libadreno_app_profiles.so|d04571240d2085f91f1e6f48dda7919dc8eed0da
-vendor/lib64/libadreno_utils.so|a6aa2a34881d5b468a5bbbdda8ee361903c53079
+
+vendor/lib64/libadreno_app_profiles.so|443dec72b84c7b94bd6bc530a7405eabb88f4997
+vendor/lib64/libadreno_utils.so|0df26c57a93e6a281681c9e09edd6935fd8a14c6
 vendor/lib64/libc2d30_bltlib.so|cb0ea8b5da25af2f196c0f5023f3039cb598674c
-vendor/lib64/libgpudataproducer.so|92fc5fc540fcf5eb658c29948c43edccf5d0ba3e
-vendor/lib64/libgsl.so|89f424dd19269b22ab5afc0d8b70028a732e683e
-vendor/lib64/libllvm-glnext.so|c11e6439300e45a1236716a0e656235035b5e813
-vendor/lib64/libllvm-qcom.so|f340191179370527d097824e66e818e63e498cad
-vendor/lib64/libllvm-qgl.so|a4c64c7fb66cde93a49f39a5c876f01348db4bd5
+vendor/lib64/libgpudataproducer.so|69b152e7f3dd06ceae1652e418f8b02a0e639368
+
+vendor/lib64/libgsl.so|0e458280feb381b2f58a5d20d49f55d14f3946b6
+vendor/lib64/libllvm-glnext.so|3d460d74c62aacb8d1f3afeb643a4f9f09b8fdbf
+vendor/lib64/libllvm-qcom.so|32b2cf23fce99aac0add258c5331d40356c3abab
+vendor/lib64/libllvm-qgl.so|9a847c3804a0319a692c50ef4c3f61fbe9585a77
 
 # Graphics (Vulkan) - from konabess v615
-vendor/lib/hw/vulkan.adreno.so|e17bbdcb1d3c97fbbf1ca419f0ae31f7aae28e6c
-vendor/lib64/hw/vulkan.adreno.so|eaa78755efc821e04638e103fae179e8fc382186
+vendor/lib/hw/vulkan.adreno.so|042866a0cdefb4bd86e3faaf76fa549ea3c1a390
+vendor/lib64/hw/vulkan.adreno.so|5c50cd9623a20fde532f27fa228fe5c52bde97ed
 
 # Graphics (Adreno firmware) - from konabess v615
 vendor/firmware/a660_sqe.fw|8e6becfbcff6ff6e64b5edb6f135cc6f656d4ee1
@@ -1001,6 +1040,7 @@ vendor/lib64/libkeymasterdeviceutils.so
 vendor/lib64/libkeymasterprovision.so
 vendor/lib64/libkeymasterutils.so
 vendor/lib64/libqtikeymaster4.so
+vendor/lib64/libspcom.so
 
 # Listen
 vendor/lib/hw/sound_trigger.primary.lahaina.so
@@ -1017,7 +1057,6 @@ vendor/lib/libmulawdec.so
 vendor/lib/libsmwrapper.so
 
 # Media
--vendor/etc/vintf/manifest/c2_manifest_vendor.xml
 vendor/bin/hw/vendor.qti.media.c2@1.0-service
 vendor/bin/init.qti.media.sh
 vendor/etc/init/init.qti.media.rc
@@ -1086,6 +1125,26 @@ vendor/firmware/vpu20_4v.mbn
 vendor/firmware/vpu20_4v.mdt
 vendor/firmware/vpu20_4v_unsigned.mbn
 
+# Media (Dolby Vision)
+vendor/bin/hw/dolbycodec2
+vendor/etc/dolby_vision.cfg
+vendor/etc/init/dolbycodec2.rc
+vendor/lib/c2.dolby.avc.dec.so
+vendor/lib/c2.dolby.avc.sec.dec.so
+vendor/lib/c2.dolby.client.so
+vendor/lib/c2.dolby.egl.so
+vendor/lib/c2.dolby.hevc.dec.so
+vendor/lib/c2.dolby.hevc.sec.dec.so
+vendor/lib/c2.dolby.store.so
+vendor/lib/libcodec2_soft_common.so
+vendor/lib/libdolbyottcameracontrol.so
+vendor/lib/libdovi.so
+vendor/lib/libsfplugin_ccodec_utils.so
+-vendor/etc/vintf/manifest/c2_manifest_vendor.xml:odm/etc/vintf/manifest/c2_manifest_xiaomi.xml
+vendor/etc/media_codecs_system_default_lahaina.xml
+vendor/etc/media_codecs_with_dolby_lahaina.xml
+
+
 # Mlipay
 vendor/bin/mlipayd@1.1
 vendor/etc/init/vendor.xiaomi.hardware.mlipay@1.1-service.rc
@@ -1128,7 +1187,6 @@ vendor/etc/perf/perfboostsconfig.xml
 vendor/etc/perf/perfconfigstore.xml
 vendor/etc/perf/targetconfig.xml
 vendor/etc/perf/targetresourceconfigs.xml
-vendor/etc/msm_irqbalance.conf
 vendor/etc/powerhint.xml
 
 # Peripheral manager
@@ -1247,6 +1305,7 @@ vendor/lib64/libconfigdb.so
 vendor/lib64/libhydra_common.so
 vendor/lib64/liblqe.so
 vendor/lib64/libmdmdetect.so
+vendor/lib64/libminkdescriptor.so
 vendor/lib64/libmodemapi.so
 vendor/lib64/libnetmgr.so
 vendor/lib64/libnetmgr_common.so
@@ -1255,6 +1314,7 @@ vendor/lib64/libnetmgr_rmnet_ext.so
 vendor/lib64/libnlnetmgr.so
 vendor/lib64/libpdmapper.so
 vendor/lib64/libpdnotifier.so
+vendor/lib64/libqcbor.so
 vendor/lib64/libqcrilNr.so
 vendor/lib64/libqcrilNrFramework.so
 vendor/lib64/libqcrilNrLogger.so
@@ -1419,17 +1479,12 @@ vendor/etc/thermal-india-normal.conf|7acd57ed878b9865b4ef5748575914492256fb16
 vendor/etc/thermal-india-phone.conf
 vendor/etc/thermal-india-tgame.conf
 vendor/etc/thermal-india-video.conf
-vendor/etc/thermal-map.conf
 vendor/etc/thermal-map-india.conf
+vendor/etc/thermal-map.conf
 vendor/etc/thermal-mgame.conf
 vendor/etc/thermal-navigation.conf
 vendor/etc/thermal-nolimits.conf
 vendor/etc/thermal-normal.conf|98d4cf4d40dbd5529dcd26669caee0b4de4f1c03
-vendor/etc/thermal-per-camera.conf
-vendor/etc/thermal-per-class0.conf
-vendor/etc/thermal-per-navigation.conf
-vendor/etc/thermal-per-normal.conf
-vendor/etc/thermal-per-video.conf
 vendor/etc/thermal-phone.conf
 vendor/etc/thermal-region-map.conf
 vendor/etc/thermal-tgame.conf

@@ -4,6 +4,7 @@
 /dev/mius(.*)?                        u:object_r:sound_device:s0
 
 # Battery secret
+/vendor/bin/batteryd		u:object_r:batteryd_exec:s0
 /vendor/bin/batterysecret                                            u:object_r:batterysecret_exec:s0
 /sys/devices/platform/soc/soc:qcom,pmic_glink/soc:qcom,pmic_glink:qcom,ucsi/typec/port0/data_role                            u:object_r:vendor_sysfs_usb_supply:s0
 
@@ -22,7 +23,10 @@
 /dev/ir_spi                                                          u:object_r:vendor_ir_device:s0
 
 # Livedisplay
-/vendor/bin/hw/vendor\.lineage\.livedisplay@2\.1-service\.xiaomi_sm8350                                      u:object_r:hal_lineage_livedisplay_qti_exec:s0
+/vendor/bin/hw/vendor\.lineage\.livedisplay@2\.1-service\.xiaomi_sm8350             u:object_r:hal_lineage_livedisplay_qti_exec:s0
+
+# Media
+/vendor/bin/hw/dolbycodec2                           u:object_r:mediacodec_exec:s0
 
 # Mlipay
 /(vendor|system/vendor)/bin/mlipayd@1.1          u:object_r:hal_mlipay_default_exec:s0
@@ -38,6 +42,9 @@
 # Thermal
 /data/vendor/thermal(/.*)?                           u:object_r:thermal_data_file:s0
 /vendor/bin/mi_thermald                              u:object_r:mi_thermald_exec:s0
+
+# Touch
+/vendor/bin/hw/vendor\.lineage\.touch@1\.0-service\.xiaomi_sm8350         u:object_r:hal_lineage_touch_default_exec:s0
 
 # Vibrator
 /vendor/bin/hw/vendor\.qti\.hardware\.vibrator\.service\.haydn                            u:object_r:hal_vibrator_default_exec:s0
