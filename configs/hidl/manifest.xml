@@ -508,4 +508,11 @@
             <instance>default</instance>
         </interface>
     </hal>
+    <hal format="hidl">
+        <name>android.hardware.neuralnetworks</name>
+        <transport>hwbinder</transport>
+        <fqname>@1.2::IDevice/qti-default</fqname>
+        <fqname>@1.2::IDevice/qti-dsp</fqname>
+        <fqname>@1.2::IDevice/qti-gpu</fqname>
+    </hal>
 </manifest>
