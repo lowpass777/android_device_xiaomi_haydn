@@ -33,6 +33,9 @@
     <!--  Flag to turn on the rendering of the above path or not  -->
     <bool name="config_enableDisplayCutoutProtection">true</bool>
 
+    <!-- The CPU temperature divider, if needed -->
+    <integer name="config_cpuTempDivider" translatable="false">1000</integer>
+
     <!-- Doze: check proximity sensor before pulsing? -->
     <bool name="doze_proximity_check_before_pulse">false</bool>
 
