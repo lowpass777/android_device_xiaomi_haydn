@@ -73,3 +73,5 @@ allow untrusted_app_all proc_zoneinfo:file { read };
 allow untrusted_app_all untrusted_app_all_devpts:chr_file { ioctl read write getattr open };
 
 allow untrusted_app_all simpleperf:process { signal };
+allow untrusted_app sysfs_net:dir { read };
+allow untrusted_app sysfs:dir { read };
