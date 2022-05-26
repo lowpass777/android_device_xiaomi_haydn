@@ -208,6 +208,7 @@ vendor.display.qdcm.mode_combine=1
 vendor.display.use_layer_ext=0
 vendor.display.use_smooth_motion=0
 vendor.gralloc.disable_ubwc=0
+vendor.display.disable_rotator_downscale=1
 
 # Media
 debug.config.media.video.aie.support=true
