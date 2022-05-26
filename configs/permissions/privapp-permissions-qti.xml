@@ -30,8 +30,4 @@
         <permission name="android.permission.READ_DEVICE_CONFIG"/>
     </privapp-permissions>
 
-    <privapp-permissions package="com.android.camera2">
-        <permission name="android.permission.SYSTEM_CAMERA"/>
-    </privapp-permissions>
-
 </permissions>
