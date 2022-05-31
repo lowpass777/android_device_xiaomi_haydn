@@ -6,3 +6,6 @@ vendor.xiaomi.hardware.campostproc::IMiPostProcService                        u:
 
 # Dolby
 vendor.dolby.hardware.dms::IDms                                     u:object_r:hal_dms_hwservice:s0
+
+# Turbo adapter
+vendor.google.google_battery::IGoogleBattery                            u:object_r:hal_turbo_adapter_hwservice:s0

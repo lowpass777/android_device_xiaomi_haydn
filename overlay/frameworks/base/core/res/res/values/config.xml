@@ -661,19 +661,19 @@
 
     <!-- Specifies the maximum burn-in offset displacement from the center. If -1, no maximum value
          will be used. -->
-    <integer name="config_burnInProtectionMaxRadius">70</integer>
+    <integer name="config_burnInProtectionMaxRadius">700</integer>
 
     <!-- Specifies the minimum burn-in offset horizontally. -->
-    <integer name="config_burnInProtectionMinHorizontalOffset">-15</integer>
+    <integer name="config_burnInProtectionMinHorizontalOffset">-150</integer>
 
     <!-- Specifies the maximum burn-in offset horizontally. -->
-    <integer name="config_burnInProtectionMaxHorizontalOffset">15</integer>
+    <integer name="config_burnInProtectionMaxHorizontalOffset">150</integer>
 
     <!-- Specifies the minimum burn-in offset vertically. -->
-    <integer name="config_burnInProtectionMinVerticalOffset">-40</integer>
+    <integer name="config_burnInProtectionMinVerticalOffset">-400</integer>
 
     <!-- Specifies the maximum burn-in offset vertically. -->
-    <integer name="config_burnInProtectionMaxVerticalOffset">40</integer>
+    <integer name="config_burnInProtectionMaxVerticalOffset">400</integer>
 
     <!-- Indicates whether device has a power button fingerprint sensor. -->
     <bool name="config_is_powerbutton_fps" translatable="false">true</bool>
@@ -731,5 +731,8 @@
 
     <!-- the number of the max cached processes in the system. -->
     <integer name="config_customizedMaxCachedProcesses">80</integer>
+
+    <!-- Whether device supports an gaming mode profiles -->
+    <bool name="config_gamingmode_performance">true</bool>
 
 </resources>

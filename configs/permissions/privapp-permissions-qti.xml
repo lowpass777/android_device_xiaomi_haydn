@@ -30,4 +30,6 @@
         <permission name="android.permission.READ_DEVICE_CONFIG"/>
     </privapp-permissions>
 
+
+
 </permissions>

@@ -1,0 +1,2 @@
+allow hal_power_stats_default vendor_sysfs_iio:dir { read write open search };
+allow hal_power_stats_default vendor_sysfs_iio:file { read open write };

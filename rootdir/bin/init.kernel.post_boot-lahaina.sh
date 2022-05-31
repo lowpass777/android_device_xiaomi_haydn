@@ -327,5 +327,3 @@ if [ -f /sys/devices/soc0/select_image ]; then
 	echo $image_variant > /sys/devices/soc0/image_variant
 	echo $oem_version > /sys/devices/soc0/image_crm_version
 fi
-
-setprop vendor.post_boot.parsed 1

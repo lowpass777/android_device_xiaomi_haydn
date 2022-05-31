@@ -17,3 +17,5 @@ type sysfs_wireless_supply, fs_type, sysfs_type;
 type ultrasound_device, dev_type;
 
 type sysfs_kgsl, sysfs_type, fs_type;
+
+type proc_sched_boost, fs_type, proc_type;

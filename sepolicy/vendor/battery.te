@@ -19,7 +19,6 @@ r_dir_file(battery_daemons, sysfs_type)
 r_dir_file(battery_daemons, vendor_sysfs_usb_supply)
 r_dir_file(battery_daemons, vendor_sysfs_usbpd_device)
 
-
 allow battery_daemons persist_subsys_file:dir w_dir_perms;
 allow battery_daemons rootfs:dir w_dir_perms;
 
@@ -38,3 +37,13 @@ allow battery_daemons self:netlink_kobject_uevent_socket create_socket_perms_no_
 allow battery_daemons self:capability { chown fsetid };
 
 wakelock_use(battery_daemons)
+
+
+allow battery_daemons {
+  system_suspend_hwservice
+  hidl_manager_hwservice
+}:hwservice_manager find;
+
+binder_call(battery_daemons, system_suspend_server)
+
+

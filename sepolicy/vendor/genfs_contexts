@@ -11,6 +11,7 @@ genfscon sysfs /devices/platform/soc/soc:qcom,dsi-display-primary u:object_r:ven
 
 # Power
 genfscon sysfs /class/qcom-battery                                              u:object_r:vendor_sysfs_battery_supply:s0
+genfscon sysfs /devices/platform/soc/soc:qcom,pmic_glink/soc:qcom,pmic_glink:qcom,ucsi/typec/port0/data_role                            u:object_r:vendor_sysfs_battery_supply:s0
 
 # kmsg
 genfscon proc /last_kmsg                                                        u:object_r:proc_last_kmsg:s0
@@ -19,8 +20,12 @@ genfscon proc /last_kmsg                                                        
 genfscon sysfs /touchpanel                                                      u:object_r:sysfs_touchpanel:s0
 genfscon sysfs /devices/virtual/touch/touch_dev/bump_sample_rate                u:object_r:sysfs_touchpanel:s0
 
+# UFS
+genfscon sysfs /devices/platform/soc/1d84000.ufshc/clkgate_enable               u:object_r:vendor_sysfs_scsi_host:s0
+
 # Wakeup nodes
 genfscon sysfs /devices/platform/dummy_hcd.0/usb1/wakeup u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/soc:qcom,smp2p-nsp/wakeup/wakeup u:object_r:sysfs_wakeup:s0
 genfscon sysfs /devices/platform/soc/1c00000.qcom,pcie/pci0000:00/0000:00:00.0/0000:01:00.0/1103_00.01.00/wakeup u:object_r:sysfs_wakeup:s0
 genfscon sysfs /devices/platform/soc/1c00000.qcom,pcie/wakeup u:object_r:sysfs_wakeup:s0
 genfscon sysfs /devices/platform/soc/17300000.qcom,lpass/subsys6/wakeup u:object_r:sysfs_wakeup:s0

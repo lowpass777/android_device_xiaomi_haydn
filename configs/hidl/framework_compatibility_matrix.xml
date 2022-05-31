@@ -292,14 +292,6 @@
     </interface>
 </hal>
 <hal format="hidl">
-    <name>vendor.qti.hardware.perf</name>
-    <version>2.0-2</version>
-    <interface>
-        <name>IPerf</name>
-        <instance>default</instance>
-    </interface>
-</hal>
-<hal format="hidl">
     <name>vendor.qti.hardware.qccvndhal</name>
     <version>1.0</version>
     <interface>
@@ -473,6 +465,14 @@
     </interface>
 </hal>
 <hal format="hidl" optional="true">
+    <name>vendor.google.google_battery</name>
+    <version>1.1</version>
+    <interface>
+        <name>IGoogleBattery</name>
+        <instance>default</instance>
+    </interface>
+</hal>
+<hal format="hidl" optional="true">
     <name>vendor.xiaomi.hardware.mlipay</name>
     <version>1.0-1</version>
     <interface>
@@ -496,5 +496,12 @@
             <name>IDms</name>
             <instance>default</instance>
         </interface>
+    </hal>
+    <hal format="aidl" optional="true">
+    <name>vendor.lineage.power</name>
+    <interface>
+        <name>IPower</name>
+        <instance>default</instance>
+    </interface>
     </hal>
 </compatibility-matrix>
