@@ -192,6 +192,14 @@
     </interface>
 </hal>
 <hal format="hidl">
+    <name>vendor.qti.hardware.perf</name>
+    <version>2.0-2</version>
+    <interface>
+        <name>IPerf</name>
+        <instance>default</instance>
+    </interface>
+</hal>
+<hal format="hidl">
     <name>vendor.qti.hardware.btconfigstore</name>
     <version>2.0</version>
     <interface>
