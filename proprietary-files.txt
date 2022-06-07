@@ -902,9 +902,6 @@ vendor/etc/lowi.conf
 vendor/etc/sap.conf
 vendor/etc/xtwifi.conf
 
-# Graphics
--vendor/app/com.qualcomm.qti.gpudrivers.lahaina.api30/com.qualcomm.qti.gpudrivers.lahaina.api30.apk;PRESIGNED
-
 # Graphics (Adreno) - from konabess v615
 vendor/lib/egl/eglSubDriverAndroid.so|a3d76c8abd204ba4d5509792c4662a63c967cb79
 vendor/lib/egl/libEGL_adreno.so|a3d76c8abd204ba4d5509792c4662a63c967cb79
