@@ -181,9 +181,6 @@ TARGET_USERIMAGES_USE_F2FS := true
 # Platform
 TARGET_BOARD_PLATFORM := lahaina
 
-# Power
-TARGET_POWERHAL_MODE_EXT := $(DEVICE_PATH)/power/power-mode.cpp
-
 # Properties
 TARGET_ODM_PROP += $(DEVICE_PATH)/odm.prop
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
@@ -214,6 +211,7 @@ include device/qcom/sepolicy_vndr/SEPolicy.mk
 SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/public
 BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor
 SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/private
+BOARD_SEPOLICY_DIRS += hardware/google/pixel-sepolicy/power-libperfmgr
 
 SELINUX_IGNORE_NEVERALLOWS := true
 
