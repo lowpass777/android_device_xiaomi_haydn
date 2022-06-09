@@ -40,6 +40,13 @@ on early-init
 
     #Disable UFS clock gating
     write /sys/bus/platform/devices/1d84000.ufshc/clkgate_enable 0
+	
+on init
+    # Set Permissions for Power HAL
+    chown system system /dev/stune/top-app/schedtune.boost
+    chmod 0664 /dev/stune/top-app/schedtune.boost
+    chown system system /dev/cpu_dma_latency
+    chmod 0664 /dev/cpu_dma_latency
 
 on early-boot
     write /sys/class/drm/card0-DSI-1/status "detect"
@@ -201,9 +208,6 @@ on post-fs-data
     rm /data/vendor/perfd/default_values
 
     mkdir /data/vendor/secure_element 0777 system system
-
-    # Create IOP  deamon related dirs
-    mkdir /data/vendor/iop 0700 root system
 
     # Mark the copy complete flag to not completed
     write /data/vendor/radio/copy_complete 0
