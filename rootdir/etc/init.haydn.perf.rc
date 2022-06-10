@@ -41,6 +41,3 @@ on property:vendor.post_boot.parsed=1
 
     # Configure uclamp
     write /dev/cpuctl/top-app/cpu.uclamp.latency_sensitive 1
-
-# This initializes vendor.qti.hardware.perf service
-    setprop vendor.post_boot.parsed 1
