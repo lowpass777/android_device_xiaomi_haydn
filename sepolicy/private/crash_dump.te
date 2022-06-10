@@ -1,0 +1,9 @@
+allow crash_dump keystore:process { ptrace };
+allow crash_dump surfaceflinger:unix_stream_socket { read };
+allow crash_dump vold:process { ptrace };
+
+allow dumpstate app_zygote:process { signal };
+allow dumpstate audioserver_exec:file { getattr };
+allow dumpstate apexd_exec:file { getattr };
+allow dumpstate auditctl_exec:file { getattr };
+allow dumpstate otapreopt_chroot_exec:file { getattr };

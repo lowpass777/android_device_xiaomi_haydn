@@ -1,0 +1,3 @@
+allow incident shell_data_file:file { append };
+allow incidentd incidentd:capability { sys_ptrace };
+allow incidentd pstorefs:dir { search };

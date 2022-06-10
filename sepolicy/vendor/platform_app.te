@@ -1,5 +1,4 @@
 allow platform_app hal_dms_hwservice:hwservice_manager find;
 allow platform_app hal_dms_default:binder { call transfer };
 allow platform_app default_android_hwservice:hwservice_manager { find };
-
-
+allow platform_app audio_config_prop:file { read };

@@ -5,9 +5,8 @@ allow untrusted_app system_bootstrap_lib_file:dir { read };
 allow untrusted_app proc:file { getattr };
 allow untrusted_app proc_keys:file { getattr };
 allow untrusted_app property_socket:sock_file { write };
-
-
-
+allow untrusted_app zygote:unix_stream_socket { getopt };
+allow untrusted_app media_rw_data_file:file { relabelfrom };
 
 
 

@@ -1,0 +1,1 @@
+allow vendor_cdsprpcd mnt_vendor_file:file { read };

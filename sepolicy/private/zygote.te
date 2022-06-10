@@ -1,0 +1,3 @@
+allow zygote zygote:capability { kill };
+allow zygote device:file { write open };
+allow zygote vendor_file:file { read open getattr map execute };

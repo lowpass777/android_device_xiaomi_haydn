@@ -36,6 +36,9 @@
 # Media
 /vendor/bin/hw/dolbycodec2                           u:object_r:mediacodec_exec:s0
 
+# MI_DISPLAY
+/sys/devices/virtual/mi_display/disp_feature/disp-DSI-+[0-1](/.*)?	u:object_r:vendor_sysfs_graphics:s0
+
 # Mlipay
 /(vendor|system/vendor)/bin/mlipayd@1.1          u:object_r:hal_mlipay_default_exec:s0
 
@@ -44,9 +47,6 @@
 
 # Power
 /(vendor|system/vendor)/bin/hw/android\.hardware\.power-service\.lisa-libperfmgr               u:object_r:hal_power_default_exec:s0
-
-# Powerstats mock
-/(vendor|system/vendor)/bin/hw/android\.hardware\.power\.stats@1\.0-service\.mock               u:object_r:hal_power_stats_default_exec:s0
 
 # Proximity
 /sys/bus/iio/devices                                                                                                            u:object_r:vendor_sysfs_iio:s0
@@ -59,9 +59,6 @@
 
 # Touch
 /vendor/bin/hw/vendor\.lineage\.touch@1\.0-service\.xiaomi_sm8350         u:object_r:hal_lineage_touch_default_exec:s0
-
-# USB
-/vendor/bin/init\.mi\.usb\.sh                                           u:object_r:vendor_qti_init_shell_exec:s0
 
 # Vibrator
 /vendor/bin/hw/vendor\.qti\.hardware\.vibrator\.service\.haydn                            u:object_r:hal_vibrator_default_exec:s0

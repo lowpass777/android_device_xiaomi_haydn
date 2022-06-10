@@ -1,2 +1,0 @@
-allow zygote device:file { write };
-allow zygote device:file { open };

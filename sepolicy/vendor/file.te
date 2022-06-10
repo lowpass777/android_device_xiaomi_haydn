@@ -19,3 +19,8 @@ type ultrasound_device, dev_type;
 type sysfs_kgsl, sysfs_type, fs_type;
 
 type proc_sched_boost, fs_type, proc_type;
+
+proc_sched_energy_aware, fs_type, proc_type;
+
+#NNHAL files
+type hal_neuralnetworks_data_file, file_type, data_file_type;
