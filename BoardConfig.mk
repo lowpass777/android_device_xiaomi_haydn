@@ -213,6 +213,7 @@ SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/public
 BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor
 SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/private
 BOARD_SEPOLICY_DIRS += hardware/google/pixel-sepolicy/power-libperfmgr
+BOARD_SEPOLICY_DIRS += hardware/google/pixel-sepolicy/googlebattery
 
 SELINUX_IGNORE_NEVERALLOWS := true
 
