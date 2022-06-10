@@ -17,10 +17,6 @@ include vendor/xiaomi/haydn/BoardConfigVendor.mk
 # Inherit from proprietary files for miuicamera
 -include vendor/xiaomi/haydn-miuicamera/products/board.mk
 
-# Test
-# SurfaceFlinger
-TARGET_USE_AOSP_SURFACEFLINGER := true
-
 # Compile libhwui in performance mode
 HWUI_COMPILE_FOR_PERF := true
 

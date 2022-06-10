@@ -601,9 +601,3 @@ PRODUCT_COPY_FILES += \
 # FUSE passthrough
 PRODUCT_PRODUCT_PROPERTIES += \
     persist.sys.fuse.passthrough.enable=true
-
-# IORap with perfetto
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.device_config.runtime_native_boot.iorap_readahead_enable=true \
-    iorapd.perfetto.enable=true
-
