@@ -173,16 +173,18 @@ vendor.gatekeeper.disable_spu=true
 
 # Graphics
 debug.egl.hw=0
-debug.hwui.renderer=skiavk
+debug.hwui.renderer=skiagl
 debug.mdpcomp.logs=0
+debug.renderengine.backend=skiaglthreaded
 debug.sf.disable_client_composition_cache=1
 debug.sf.enable_advanced_sf_phase_offset=1
-debug.sf.high_fps_early_gl_phase_offset_ns=-4000000
+debug.sf.high_fps_early_gl_phase_offset_ns=-2000000
 debug.sf.high_fps_early_phase_offset_ns=-4000000
 debug.sf.high_fps_late_app_phase_offset_ns=1000000
 debug.sf.high_fps_late_sf_phase_offset_ns=-2000000
 debug.sf.hw=0
 debug.sf.set_idle_timer_ms=3000
+debug.sf.disable_client_composition_cache=1
 renderthread.skia.reduceopstasksplitting=truepi30
 ro.hardware.egl=adreno
 ro.hardware.vulkan=adreno
@@ -208,10 +210,20 @@ vendor.display.enable_optimize_refresh=1
 vendor.display.enable_perf_hint_large_comp_cycle=1
 vendor.display.enable_posted_start_dyn=2
 vendor.display.qdcm.mode_combine=1
-vendor.display.use_layer_ext=0
 vendor.display.use_smooth_motion=0
 vendor.gralloc.disable_ubwc=0
-persist.sys.sf.native_mode=2
+persist.sys.sf.native_mode=0
+
+# Test
+# Display
+ro.surface_flinger.refresh_rate_switching=true
+ro.surface_flinger.set_idle_timer_ms=250
+ro.surface_flinger.set_touch_timer_ms=300
+ro.surface_flinger.set_display_power_timer_ms=1000
+ro.surface_flinger.use_content_detection_for_refresh_rate=true
+ro.vendor.display.sensortype=2
+vendor.display.use_layer_ext=1
+
 
 # Media
 debug.config.media.video.aie.support=true

@@ -1,3 +1,4 @@
 user=system seinfo=platform name=org.lineageos.settings domain=xiaomiparts_app type=system_app_data_file
 user=_app seinfo=platform name=org.ifaa.aidl.manager domain=mlipay_app levelFrom=all
 user=_app seinfo=platform name=com.tencent.soter.soterserver domain=mlipay_app levelFrom=all
+user=_app seinfo=platform name=com.google.android.turboadapter domain=turbo_adapter type=app_data_file levelFrom=all
