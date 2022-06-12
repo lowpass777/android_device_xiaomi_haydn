@@ -49,6 +49,10 @@ on init
     chown system system /dev/cpu_dma_latency
     chmod 0664 /dev/cpu_dma_latency
 
+    # Report max frequency to unity tasks.
+    write /proc/sys/kernel/sched_lib_name "UnityMain,libunity.so"
+    write /proc/sys/kernel/sched_lib_mask_force 255
+	
 on early-boot
     write /sys/class/drm/card0-DSI-1/status "detect"
     write /sys/module/drm/parameters/vblankoffdelay -1
