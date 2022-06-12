@@ -28,3 +28,4 @@ type sysfs_battery_saver, fs_type, sysfs_type;
 
 type sysfs_wlc, sysfs_type, fs_type;
 type sysfs_chargelevel, sysfs_type, fs_type;
+type sysfs_hal_health_default, fs_type, sysfs_type;
