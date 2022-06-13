@@ -12,7 +12,6 @@ genfscon sysfs /devices/platform/soc/soc:qcom,dsi-display-primary u:object_r:ven
 # Power
 genfscon sysfs /class/qcom-battery                                              u:object_r:vendor_sysfs_battery_supply:s0
 genfscon sysfs /devices/platform/soc/soc:qcom,pmic_glink/soc:qcom,pmic_glink:qcom,ucsi/typec/port0/data_role                            u:object_r:vendor_sysfs_battery_supply:s0
-genfscon sysfs /devices/platform/battery/power_supply/battery/current_now u:object_r:sysfs_battery_supply:s0
 
 # kmsg
 genfscon proc /last_kmsg                                                        u:object_r:proc_last_kmsg:s0

@@ -525,6 +525,20 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/permissions/privapp-permissions-qti.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp-permissions-qti.xml
 
+# Thermal
+PRODUCT_PACKAGES += \
+    android.hardware.thermal@2.0 \
+    android.hardware.thermal@2.0.vendor
+
+# Thermal HAL
+PRODUCT_PACKAGES += \
+    android.hardware.thermal@2.0-service.lisa \
+    thermal_symlinks \
+    thermal_logd
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/thermal_info_config.json:$(TARGET_COPY_OUT_VENDOR)/etc/thermal_info_config.json
+
 # Touch
 PRODUCT_PACKAGES += \
     vendor.lineage.touch@1.0-service.xiaomi_sm8350
