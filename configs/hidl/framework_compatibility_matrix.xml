@@ -480,7 +480,7 @@
         <instance>default</instance>
     </interface>
 </hal>
-    <hal format="hidl">
+<hal format="hidl">
         <name>vendor.lineage.livedisplay</name>
         <transport>hwbinder</transport>
         <version>2.0</version>
@@ -488,29 +488,12 @@
             <name>IPictureAdjustment</name>
             <instance>default</instance>
         </interface>
-    </hal>
-    <hal format="hidl" optional="true">
+</hal>
+<hal format="hidl" optional="true">
         <name>vendor.dolby.hardware.dms</name>
         <version>1.0</version>
         <interface>
             <name>IDms</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-	    <!-- Charging -->
-<hal format="hidl" optional="true">
-        <name>vendor.lineage.fastcharge</name>
-        <version>1.0</version>
-        <interface>
-            <name>IFastCharge</name>
-            <instance>default</instance>
-        </interface>
-</hal>
-<hal format="hidl" optional="true">
-        <name>vendor.lineage.powershare</name>
-        <version>1.0</version>
-        <interface>
-            <name>IPowerShare</name>
             <instance>default</instance>
         </interface>
 </hal>
@@ -529,4 +512,22 @@
             <instance>default</instance>
         </interface>
 </hal>
+    <!-- QSPM-HAL service-->
+    <hal format="hidl">
+        <name>vendor.qti.qspmhal</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>IQspmhal</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="hidl" optional="true">
+        <name>vendor.qti.hardware.servicetracker</name>
+        <version>1.2</version>
+        <interface>
+            <name>IServicetracker</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
 </compatibility-matrix>

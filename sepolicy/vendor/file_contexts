@@ -17,8 +17,8 @@
 # Dolby
 /(vendor|system/vendor)/bin/hw/vendor\.dolby\.hardware\.dms@1\.0-service                     u:object_r:hal_dms_default_exec:s0
 
-# FastCharge HAL
-/(vendor|system/vendor)/bin/hw/vendor\.lineage\.fastcharge@1\.0                   u:object_r:hal_lineage_fastcharge_default_exec:s0
+# Health
+/vendor/bin/hw/android\.hardware\.health@2\.1-service u:object_r:hal_health_default_exec:s0
 
 # Fingerprint
 /data/vendor/fpdump(/.*)?                                           u:object_r:vendor_fingerprint_data_file:s0
@@ -50,6 +50,7 @@
 
 # Power
 /(vendor|system/vendor)/bin/hw/android\.hardware\.power-service\.lisa-libperfmgr               u:object_r:hal_power_default_exec:s0
+/(vendor|system/vendor)/bin/hw/android\.hardware\.power\.stats-service\.laurel_sprout               u:object_r:hal_power_stats_default_exec:s0
 
 # Proximity
 /sys/bus/iio/devices                                                                                                            u:object_r:vendor_sysfs_iio:s0

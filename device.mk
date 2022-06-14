@@ -262,7 +262,9 @@ PRODUCT_COPY_FILES += \
 # Health
 PRODUCT_PACKAGES += \
     android.hardware.health@2.1-impl-qti \
-    android.hardware.health@2.1-service
+    android.hardware.health@2.1-service \
+    android.hardware.health@2.0-impl \
+    android.hardware.health@2.0-service
 
 # HIDL
 PRODUCT_PACKAGES += \
@@ -429,6 +431,7 @@ PRODUCT_DEXPREOPT_SPEED_APPS += \
 # Power
 PRODUCT_PACKAGES += \
     android.hardware.power-service.lisa-libperfmgr \
+    android.hardware.power.stats-service.laurel_sprout \
     libqti-perfd-client
 
 PRODUCT_COPY_FILES += \
@@ -473,6 +476,11 @@ PRODUCT_COPY_FILES += \
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH)
+
+# Servicetracker
+PRODUCT_PACKAGES += \
+    vendor.qti.hardware.servicetracker@1.2-service \
+    vendor.qti.hardware.servicetracker@1.2.vendor
 
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
@@ -619,3 +627,4 @@ PRODUCT_COPY_FILES += \
 # FUSE passthrough
 PRODUCT_PRODUCT_PROPERTIES += \
     persist.sys.fuse.passthrough.enable=true
+

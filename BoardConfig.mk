@@ -215,6 +215,7 @@ SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/private
 BOARD_SEPOLICY_DIRS += hardware/google/pixel-sepolicy/power-libperfmgr
 BOARD_SEPOLICY_DIRS += hardware/google/pixel-sepolicy/turbo_adapter
 BOARD_SEPOLICY_DIRS += hardware/google/pixel-sepolicy/thermal
+BOARD_SEPOLICY_DIRS += hardware/google/pixel-sepolicy/powerstats
 
 SELINUX_IGNORE_NEVERALLOWS := true
 

@@ -9,3 +9,4 @@ vendor.dolby.hardware.dms::IDms                                     u:object_r:h
 
 # Turbo adapter
 vendor.google.google_battery::IGoogleBattery                            u:object_r:hal_turbo_adapter_hwservice:s0
+vendor.lineage.touch::IHighTouchPollingRate                             u:object_r:hal_lineage_touch_hwservice:s0
