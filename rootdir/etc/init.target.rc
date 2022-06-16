@@ -136,8 +136,13 @@ on early-boot
     start vendor.sensors
 
 on boot
+    chmod 0644 /sys/class/thermal/thermal_message/sconfig
     chown system system /sys/class/thermal/thermal_message/sconfig
-    chown system system /sys/class/thermal/thermal_message/balance_mode
+    chmod 0666 /sys/class/thermal/thermal_message/temp_state
+    chown system system /sys/class/thermal/thermal_message/temp_state
+
+    # Set thermal mode to evaluation
+    write /sys/class/thermal/thermal_message/sconfig 10
 
     # Set xiaomi touch permissions
     chown system system /dev/xiaomi-touch
