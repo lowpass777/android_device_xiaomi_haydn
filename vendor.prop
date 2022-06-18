@@ -231,7 +231,7 @@ debug.config.media.video.ais.support=true
 debug.config.media.video.frc.support=true
 debug.media.video.frc=false
 debug.media.video.vpp=false
-debug.stagefright.ccodec=1
+debug.stagefright.ccodec=4
 debug.stagefright.omx_default_rank=0
 media.aac_51_output_enabled=true
 media.stagefright.enable-aac=true
@@ -322,4 +322,6 @@ vendor.usb.use_ffs_mtp=1
 # Wifi
 ro.vendor.net.enable_dual_wifi=1
 wifi.aware.interface=wifi-aware0
+
+persist.vendor.console.silent.config=1
 
