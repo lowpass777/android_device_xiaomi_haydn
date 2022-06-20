@@ -1,0 +1,2 @@
+vendor.qti.imsrtpservice::IRTPService                                         u:object_r:hal_imsrtp_hwservice:s0
+com.qualcomm.qti.imsrtpservice::IRTPService                                   u:object_r:hal_imsrtp_hwservice:s0

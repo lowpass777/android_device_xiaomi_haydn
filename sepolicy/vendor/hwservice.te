@@ -3,3 +3,13 @@ type hal_dms_hwservice, hwservice_manager_type;
 
 # TurboAdapter
 type hal_turbo_adapter_hwservice, hwservice_manager_type;
+
+# IMS
+type hal_imsrtp_hwservice,         hwservice_manager_type;
+type vnd_ims_radio_hwservice,      hwservice_manager_type;
+
+type hal_datafactory_hwservice;
+
+type hal_iwlan_hwservice, hwservice_manager_type, vendor_hwservice_type;
+
+type hal_cacert_hwservice, hwservice_manager_type;
