@@ -90,6 +90,7 @@ echo 0-3 > /dev/cpuset/system-background/cpus
 # jared.wu@OPTIMIZATION, 2020/09/22, Make foreground run on cpu 0-6
 echo 0-6 > /dev/cpuset/foreground/cpus
 echo 0-7 > /dev/cpuset/top-app/cpus
+echo 0-3 > /dev/cpuset/display/cpus
 
 # configure governor settings for silver cluster
 echo "schedutil" > /sys/devices/system/cpu/cpufreq/policy0/scaling_governor
