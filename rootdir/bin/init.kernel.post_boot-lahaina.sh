@@ -1,3 +1,5 @@
+#! /vendor/bin/sh
+
 #=============================================================================
 # Copyright (c) 2020 Qualcomm Technologies, Inc.
 # All Rights Reserved.
@@ -34,6 +36,11 @@ exec > /dev/kmsg 2>&1
 
 echo "execprog: sh execution"
 
+if getprop | grep -q 'ro\.aospa\.'; then
+  echo "execprog: AOSPA detected, skipping execution"
+  exit 0
+fi
+
 BIND=/vendor/bin/init.kernel.post_boot-lahaina.sh
 
 rev=`cat /sys/devices/soc0/revision`
@@ -54,34 +61,42 @@ if ! mount | grep -q "$BIND" && [ ! -e /sbin/recovery ] && [ ! -e /dev/ep/.post_
   mount --bind /dev/ep/execprog "$BIND"
   chcon "u:object_r:vendor_file:s0" "$BIND"
 
+  # Disable /vendor/etc/vendor.memplus.sh
+  mount --bind /dev/ep/.post_boot /vendor/etc/vendor.memplus.sh
+
+  # Override lmkd settings
+  cp -p /vendor/etc/perf/perfconfigstore.xml /dev/ep/
+  sed -i -e /ro.lmk./d /dev/ep/perfconfigstore.xml
+  mount --bind /dev/ep/perfconfigstore.xml /vendor/etc/perf/perfconfigstore.xml
+  chcon "u:object_r:vendor_configs_file:s0" /vendor/etc/perf/perfconfigstore.xml
+
   # lazy unmount /dev/ep for invisibility
   umount -l /dev/ep
+
+  # Wait until "on init" is triggered
+  while [ ! -e /dev/cpuset/background ]; do
+    sleep 1
+  done
 
   # Setup swap
   while [ ! -e /dev/block/zram0 ]; do
     sleep 1
   done
   if ! grep -q zram /proc/swaps; then
-    # Setup backing device
-    BDEV="/dev/block/by-name/last_parti"
-    if [ ! -e "$BDEV" ]; then
-      echo "post_boot: failed to find the backing device"
-    fi
-    echo "post_boot: using $BDEV for zram backing_dev"
-    realpath $BDEV > /sys/block/zram0/backing_dev
-    # 4GB
-    echo 4294967296 > /sys/block/zram0/disksize
+    MemStr=$(cat /proc/meminfo | grep MemTotal)
+    MemKb=$((${MemStr:16:8}))
 
-    # Set swappiness reflecting the device's RAM size
-    RamStr=$(cat /proc/meminfo | grep MemTotal)
-    RamMB=$((${RamStr:16:8} / 1024))
-    if [ $RamMB -le 6144 ]; then
-      echo 190 > /proc/sys/vm/rswappiness
-    elif [ $RamMB -le 8192 ]; then
-      echo 160 > /proc/sys/vm/rswappiness
-    else
-      echo 130 > /proc/sys/vm/rswappiness
-    fi
+    # set watermark_scale_factor = 36MB * 1024 * 1024 * 10 / MemTotal
+    factor=`expr 377487360 / $MemKb`
+    echo $factor > /proc/sys/vm/watermark_scale_factor
+
+    # set min_free_kbytes = 32MB
+    echo 32768 > /proc/sys/vm/min_free_kbytes
+
+    # Set swap size to half of MemTotal
+    # Align by 4 MiB
+    expr $MemKb / 2 '*' 1024 / 4194304 '*' 4194304 > /sys/block/zram0/disksize
+    echo 160 > /proc/sys/vm/rswappiness
 
     mkswap /dev/block/zram0
     swapon /dev/block/zram0
@@ -97,6 +112,12 @@ if ! mount | grep -q "$BIND" && [ ! -e /sbin/recovery ] && [ ! -e /dev/ep/.post_
       echo "0:1305600" > /sys/devices/system/cpu/cpu_boost/input_boost_freq
   fi
   echo 120 > /sys/devices/system/cpu/cpu_boost/input_boost_ms
+
+  #liochen@SYSTEM, 2020/11/02, Add for enable ufs performance
+  echo 0 > /sys/class/scsi_host/host0/../../../clkscale_enable
+
+  # SSG
+  echo 25 > /dev/blkio/background/blkio.ssg.max_available_ratio
 
   # Re-enable SELinux
   echo "97" > /sys/fs/selinux/enforce
@@ -151,17 +172,19 @@ echo 0-3 > /dev/cpuset/background/cpus
 echo 0-3 > /dev/cpuset/system-background/cpus
 # jared.wu@OPTIMIZATION, 2020/09/22, Make foreground run on cpu 0-6
 echo 0-6 > /dev/cpuset/foreground/cpus
-echo 0-7 > /dev/cpuset/top-app/cpus
-echo 0-3 > /dev/cpuset/display/cpus
+echo 0-6 > /dev/cpuset/display/cpus
+
+# Turn off scheduler boost at the end
+echo 0 > /proc/sys/kernel/sched_boost
 
 # configure governor settings for silver cluster
 echo "schedutil" > /sys/devices/system/cpu/cpufreq/policy0/scaling_governor
 echo 0 > /sys/devices/system/cpu/cpufreq/policy0/schedutil/down_rate_limit_us
 echo 0 > /sys/devices/system/cpu/cpufreq/policy0/schedutil/up_rate_limit_us
 if [ $rev == "1.0" ]; then
-	echo 1190400 > /sys/devices/system/cpu/cpufreq/policy0/schedutil/hispeed_freq
+    echo 1190400 > /sys/devices/system/cpu/cpufreq/policy0/schedutil/hispeed_freq
 else
-	echo 1209600 > /sys/devices/system/cpu/cpufreq/policy0/schedutil/hispeed_freq
+    echo 1209600 > /sys/devices/system/cpu/cpufreq/policy0/schedutil/hispeed_freq
 fi
 echo 691200 > /sys/devices/system/cpu/cpufreq/policy0/scaling_min_freq
 echo 1 > /sys/devices/system/cpu/cpufreq/policy0/schedutil/pl
@@ -171,9 +194,9 @@ echo "schedutil" > /sys/devices/system/cpu/cpufreq/policy4/scaling_governor
 echo 0 > /sys/devices/system/cpu/cpufreq/policy4/schedutil/down_rate_limit_us
 echo 0 > /sys/devices/system/cpu/cpufreq/policy4/schedutil/up_rate_limit_us
 if [ $rev == "1.0" ]; then
-	echo 1497600 > /sys/devices/system/cpu/cpufreq/policy4/schedutil/hispeed_freq
+    echo 1497600 > /sys/devices/system/cpu/cpufreq/policy4/schedutil/hispeed_freq
 else
-	echo 1555200 > /sys/devices/system/cpu/cpufreq/policy4/schedutil/hispeed_freq
+    echo 1555200 > /sys/devices/system/cpu/cpufreq/policy4/schedutil/hispeed_freq
 fi
 echo 1 > /sys/devices/system/cpu/cpufreq/policy4/schedutil/pl
 
@@ -182,9 +205,9 @@ echo "schedutil" > /sys/devices/system/cpu/cpufreq/policy7/scaling_governor
 echo 0 > /sys/devices/system/cpu/cpufreq/policy7/schedutil/down_rate_limit_us
 echo 0 > /sys/devices/system/cpu/cpufreq/policy7/schedutil/up_rate_limit_us
 if [ $rev == "1.0" ]; then
-	echo 1536000 > /sys/devices/system/cpu/cpufreq/policy7/schedutil/hispeed_freq
+    echo 1536000 > /sys/devices/system/cpu/cpufreq/policy7/schedutil/hispeed_freq
 else
-	echo 1670400 > /sys/devices/system/cpu/cpufreq/policy7/schedutil/hispeed_freq
+    echo 1670400 > /sys/devices/system/cpu/cpufreq/policy7/schedutil/hispeed_freq
 fi
 echo 1 > /sys/devices/system/cpu/cpufreq/policy7/schedutil/pl
 
@@ -293,7 +316,7 @@ for qoslat in $device/*qoslat/devfreq/*qoslat
 do
     echo 50 > $qoslat/mem_latency/ratio_ceil
 done
-
+echo N > /sys/module/lpm_levels/parameters/sleep_disabled
 echo deep > /sys/power/mem_sleep
 
 # Setup readahead
@@ -305,19 +328,21 @@ sync
 
 # Let kernel know our image version/variant/crm_version
 if [ -f /sys/devices/soc0/select_image ]; then
-	image_version="10:"
-	image_version+=`getprop ro.build.id`
-	image_version+=":"
-	image_version+=`getprop ro.build.version.incremental`
-	image_variant=`getprop ro.product.name`
-	image_variant+="-"
-	image_variant+=`getprop ro.build.type`
-	oem_version=`getprop ro.build.version.codename`
-	echo 10 > /sys/devices/soc0/select_image
-	echo $image_version > /sys/devices/soc0/image_version
-	echo $image_variant > /sys/devices/soc0/image_variant
-	echo $oem_version > /sys/devices/soc0/image_crm_version
+    image_version="10:"
+    image_version+=`getprop ro.build.id`
+    image_version+=":"
+    image_version+=`getprop ro.build.version.incremental`
+    image_variant=`getprop ro.product.name`
+    image_variant+="-"
+    image_variant+=`getprop ro.build.type`
+    oem_version=`getprop ro.build.version.codename`
+    echo 10 > /sys/devices/soc0/select_image
+    echo $image_version > /sys/devices/soc0/image_version
+    echo $image_variant > /sys/devices/soc0/image_variant
+    echo $oem_version > /sys/devices/soc0/image_crm_version
 fi
+
+setprop vendor.post_boot.parsed 1
 
 # UFS add component info
 UFS_PN=`cat /sys/devices/platform/soc/1d84000.ufshc/string_descriptors/product_name`
@@ -327,5 +352,3 @@ UFS_INFO="UFS "`echo ${UFS_PN} | tr -d "\r"`" "`echo ${UFS_VENDOR} | tr -d "\r"`
 echo ${UFS_INFO}> /sys/project_info/add_component
 #liochen@SYSTEM, 2020/11/02, Add for enable ufs performance
 echo 0 > /sys/class/scsi_host/host0/../../../clkscale_enable
-
-pm disable com.google.android.gms/.chimera.GmsIntentOperationService
