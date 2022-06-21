@@ -110,6 +110,11 @@ ddr_type=`od -An -tx /proc/device-tree/memory/ddr_device_type`
 ddr_type4="07"
 ddr_type5="08"
 
+  # Wait until "on init" is triggered
+  while [ ! -e /dev/cpuset/background ]; do
+    sleep 1
+  done
+
 # Core control parameters for gold
 echo 2 > /sys/devices/system/cpu/cpu4/core_ctl/min_cpus
 echo 60 > /sys/devices/system/cpu/cpu4/core_ctl/busy_up_thres
@@ -178,6 +183,9 @@ else
 	echo "0:1305600" > /sys/devices/system/cpu/cpu_boost/input_boost_freq
 fi
 echo 120 > /sys/devices/system/cpu/cpu_boost/input_boost_ms
+
+# SSG
+echo 25 > /dev/blkio/background/blkio.ssg.max_available_ratio
 
 # configure governor settings for gold cluster
 echo "schedutil" > /sys/devices/system/cpu/cpufreq/policy4/scaling_governor
