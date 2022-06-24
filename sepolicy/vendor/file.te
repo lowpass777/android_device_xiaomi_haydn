@@ -16,6 +16,8 @@ type sysfs_power_supply, sysfs_type, fs_type;
 
 type sysfs_wireless_supply, fs_type, sysfs_type;
 
+type sysctl_dt2w, fs_type, sysfs_type;
+
 type ultrasound_device, dev_type;
 
 type sysfs_kgsl, sysfs_type, fs_type;
@@ -34,4 +36,17 @@ type sysfs_hal_health_default, fs_type, sysfs_type;
 
 type diag_device, file_type;
 type spidev_file, file_type;
+
+type proc_boot_reason, fs_type, proc_type;
+
+type proc_touchpanel, fs_type, proc_type;
+
+type proc_sysctl_autogroup, fs_type, proc_type;
+
+type proc_sysctl_schedboost, fs_type, proc_type;
+
+type ipa_dev, file_type;
+
+type proc_dirty_ratio, fs_type, proc_type;
+
 

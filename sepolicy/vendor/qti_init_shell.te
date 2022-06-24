@@ -1,1 +1,19 @@
+type qti_init_shell, domain;
+type qti_init_shell_exec, exec_type, vendor_file_type,file_type;
+init_daemon_domain(qti_init_shell)
+
 allow vendor_qti_init_shell proc_page_cluster:file rw_file_perms;
+allow qti_init_shell proc_boot_reason:file { open read };
+allow qti_init_shell proc_boot_reason:file r_file_perms;
+allow qti_init_shell proc_touchpanel:dir { r_dir_perms setattr };
+allow qti_init_shell proc_touchpanel:file { getattr setattr };
+
+allow qti_init_shell proc_sysctl_autogroup:file w_file_perms;
+allow qti_init_shell proc_sysctl_schedboost:file w_file_perms;
+
+allow qti_init_shell sysfs_net:file rw_file_perms;
+allow qti_init_shell { sysfs sysfs_dm }:file { write setattr };
+allow qti_init_shell vfat:dir { search };
+allow qti_init_shell system_data_file:dir { write };
+allow qti_init_shell system_data_file:dir { getattr };
+allow qti_init_shell sysctl_dt2w:file getattr;

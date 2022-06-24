@@ -18,3 +18,9 @@ type ims_prop, property_type;
 type qcom_ims_prop, property_type;
 
 type vendor_fingerprint_prop, property_type;
+
+type power_prop, property_type;
+
+# Xiaomi
+type vendor_xiaomi_prop, property_type;
+

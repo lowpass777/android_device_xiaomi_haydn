@@ -78,11 +78,13 @@ on property:vendor.setup.power=1
 
     write /sys/devices/platform/soc/soc:qcom,cpu4-cpu-l3-lat/devfreq/soc:qcom,cpu4-cpu-l3-lat/governor mem_latency
     write /sys/devices/platform/soc/soc:qcom,cpu4-cpu-l3-lat/devfreq/soc:qcom,cpu4-cpu-l3-lat/polling_interval 10
+
     # Gold L3 ratio ceil is 4000
     write /sys/devices/platform/soc/soc:qcom,cpu4-cpu-l3-lat/devfreq/soc:qcom,cpu4-cpu-l3-lat/mem_latency/ratio_ceil 4000
 
     write /sys/devices/platform/soc/soc:qcom,cpu7-cpu-l3-lat/devfreq/soc:qcom,cpu7-cpu-l3-lat/governor mem_latency
     write /sys/devices/platform/soc/soc:qcom,cpu7-cpu-l3-lat/devfreq/soc:qcom,cpu7-cpu-l3-lat/polling_interval 10
+
     # Gold+ L3 ratio ceil is 20000
     write /sys/devices/platform/soc/soc:qcom,cpu7-cpu-l3-lat/devfreq/soc:qcom,cpu7-cpu-l3-lat/mem_latency/ratio_ceil 20000
 
@@ -99,6 +101,9 @@ on property:vendor.setup.power=1
 
     # Enable powersaving
     write /sys/module/lpm_levels/parameters/sleep_disabled 0
+
+    # Configure uclamp
+    write /dev/cpuctl/top-app/cpu.uclamp.latency_sensitive 1
 
     chown system system /sys/class/devfreq/soc:qcom,l3-cdsp/userspace/set_freq
 	

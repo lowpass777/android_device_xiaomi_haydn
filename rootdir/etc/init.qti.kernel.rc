@@ -53,12 +53,12 @@ on early-boot
 
 on boot
     # Set the io-scheduler to bfq on all mq support devices
-    write /sys/block/sda/queue/scheduler bfq
-    write /sys/block/sdb/queue/scheduler bfq
-    write /sys/block/sdc/queue/scheduler bfq
-    write /sys/block/sdd/queue/scheduler bfq
-    write /sys/block/sde/queue/scheduler bfq
-    write /sys/block/sdf/queue/scheduler bfq
+    write /sys/block/sda/queue/scheduler ssg
+    write /sys/block/sdb/queue/scheduler ssg
+    write /sys/block/sdc/queue/scheduler ssg
+    write /sys/block/sdd/queue/scheduler ssg
+    write /sys/block/sde/queue/scheduler ssg
+    write /sys/block/sdf/queue/scheduler ssg
 
     # Update io-scheduler tunables
     write /sys/block/sda/queue/iosched/slice_idle 0
@@ -77,8 +77,8 @@ service kernel-post-boot /vendor/bin/sh /vendor/bin/init.kernel.post_boot-lahain
 
 on property:sys.boot_completed=1
     # Reset read ahead for dm-0, dm-1 and dm-2 to 512kb
-    write /sys/block/dm-0/queue/read_ahead_kb 512
-    write /sys/block/dm-1/queue/read_ahead_kb 512
-    write /sys/block/dm-2/queue/read_ahead_kb 512
+    write /sys/block/dm-0/queue/read_ahead_kb 128
+    write /sys/block/dm-1/queue/read_ahead_kb 128
+    write /sys/block/dm-2/queue/read_ahead_kb 128
 
     start kernel-post-boot
