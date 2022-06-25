@@ -239,7 +239,12 @@ on post-fs-data
 
 on property:sys.boot_completed=1
     # Enable UFS clock scaling back
-    write /sys/bus/platform/devices/1d84000.ufshc/clkscale_enable 1
+    write /sys/bus/platform/devices/1d84000.ufshc/clkscale_enable 0
+
+    write /dev/cpuctl/top-app/cpu.uclamp.latency_sensitive 1
+
+    write /dev/cpuset/audio-app/cpus 1-2
+    write /dev/cpuset/display/cpus 0-6
 
     #Enable UFS auto_hibern8 back
     write /sys/bus/platform/devices/1d84000.ufshc/auto_hibern8 5000
