@@ -7,22 +7,7 @@
 		"9999999",
 		"1804800",
 		"1708800", 
-		"1612801",
 		"1612800", 
-		"1497600",
-		"1401600",
-		"1305600", 
-		"1209601",
-		"1209600",
-		"1094400", 
-		"998400", 
-		"902400",
-		"806400", 
-		"691200",
-		"691199", 
-		"595200",
-		"499200", 
-		"403200", 
 		"300000", 
       ],
       "DefaultIndex": 0,
@@ -35,22 +20,7 @@
 		"9999999",
 		"1804800",
 		"1708800", 
-		"1612801",
 		"1612800", 
-		"1497600",
-		"1401600",
-		"1305600", 
-		"1209601",
-		"1209600",
-		"1094400", 
-		"998400", 
-		"902400",
-		"806400", 
-		"691200",
-		"691199", 
-		"595200",
-		"499200", 
-		"403200", 
 		"300000",  
       ],
       "ResetOnInit": false
@@ -63,16 +33,13 @@
 		"2419200",
 		"2342400", 
 		"2227200",
-		"2112001", 
 		"2112000",
-		"1996801", 
 		"1996800", 
 		"1881600", 
 		"1766400", 
 		"1670400", 
 		"1555200", 
 		"1440000",
-		"1324801", 
 		"1324800", 
 		"1209600", 
 		"1075200", 
@@ -91,16 +58,13 @@
 		"2419200",
 		"2342400", 
 		"2227200",
-		"2112001", 
 		"2112000",
-		"1996801", 
 		"1996800", 
 		"1881600", 
 		"1766400", 
 		"1670400", 
 		"1555200", 
-		"1440000",
-		"1324801", 
+		"1440000", 
 		"1324800", 
 		"1209600", 
 		"1075200", 
@@ -132,10 +96,6 @@
 		"1555201",
 		"1555200", 
 		"1420800", 
-		"1305600", 
-		"1190400", 
-		"1075200", 
-		"960000", 
 		"844800", 
 		"844799", 
       ],
@@ -164,10 +124,6 @@
 		"1555201",
 		"1555200", 
 		"1420800", 
-		"1305600", 
-		"1190400", 
-		"1075200", 
-		"960000", 
 		"844800", 
 		"844799", 
       ],
@@ -426,19 +382,19 @@
       "PowerHint": "SUSTAINED_PERFORMANCE",
       "Node": "CPUBigClusterMaxFreq",
       "Duration": 0,
-      "Value": "1670400"
+      "Value": "1209600"
     },
     {
       "PowerHint": "SUSTAINED_PERFORMANCE",
       "Node": "CPUBigPlusClusterMaxFreq",
       "Duration": 0,
-      "Value": "1670400"
+      "Value": "1420800"
     },
     {
       "PowerHint": "SUSTAINED_PERFORMANCE",
       "Node": "CPULittleClusterMaxFreq",
       "Duration": 0,
-      "Value": "1497600"
+      "Value": "1708800"
     },
     {
       "PowerHint": "SUSTAINED_PERFORMANCE",
@@ -630,13 +586,13 @@
       "PowerHint": "Flipendo",
       "Node": "CPUBigPlusClusterMaxFreq",
       "Duration": 0,
-      "Value": "1900800"
+      "Value": "1420800"
     },
     {
       "PowerHint": "Flipendo",
       "Node": "CPUBigClusterMaxFreq",
       "Duration": 0,
-      "Value": "1670400"
+      "Value": "710400"
     },
     {
       "PowerHint": "THERMAL_quiet_therm_LIGHT",
@@ -654,13 +610,13 @@
       "PowerHint": "THERMAL_quiet_therm_LIGHT",
       "Node": "CPUBigClusterMaxFreq",
       "Duration": 0,
-      "Value": "2227200"
+      "Value": "2419200"
     },
     {
       "PowerHint": "THERMAL_quiet_therm_LIGHT",
       "Node": "CPUBigPlusClusterMaxFreq",
       "Duration": 0,
-      "Value": "2380800"
+      "Value": "2841600"
     },
     {
       "PowerHint": "THERMAL_quiet_therm_MODERATE",
@@ -726,13 +682,13 @@
       "PowerHint": "THERMAL_quiet_therm_CRITICAL",
       "Node": "CPUBigClusterMaxFreq",
       "Duration": 0,
-      "Value": "1670400"
+      "Value": "710400"
     },
     {
       "PowerHint": "THERMAL_quiet_therm_CRITICAL",
       "Node": "CPUBigPlusClusterMaxFreq",
       "Duration": 0,
-      "Value": "1555200"
+      "Value": "1420800"
     },
     {
       "PowerHint": "THERMAL_quiet_therm_EMERGENCY",
@@ -756,7 +712,7 @@
       "PowerHint": "THERMAL_quiet_therm_EMERGENCY",
       "Node": "CPUBigPlusClusterMaxFreq",
       "Duration": 0,
-      "Value": "1075200"
+      "Value": "1420800"
     }
   ]
 }
