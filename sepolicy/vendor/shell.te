@@ -1,0 +1,1 @@
+allow shell hal_power_hwservice:hwservice_manager { find };

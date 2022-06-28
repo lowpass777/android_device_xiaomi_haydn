@@ -522,7 +522,6 @@
     <!-- Power -->
     <hal format="aidl">
         <name>vendor.lineage.power</name>
-        <transport>hwbinder</transport>
         <interface>
             <name>IPower</name>
             <instance>default</instance>
@@ -554,5 +553,13 @@
             <name>IQspmhal</name>
             <instance>default</instance>
         </interface>
+    </hal>
+    <hal format="aidl">
+        <name>android.hardware.power</name>
+        <interface>
+            <name>IPower</name>
+            <instance>default</instance>
+        </interface>
+        <fqname>IPower/default</fqname>
     </hal>
 </manifest>

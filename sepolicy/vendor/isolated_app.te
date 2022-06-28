@@ -1,0 +1,4 @@
+allow isolated_app proc_pid_max:file { open };
+allow isolated_app init:dir { search };
+
+

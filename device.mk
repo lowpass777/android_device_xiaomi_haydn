@@ -45,6 +45,14 @@ PRODUCT_PACKAGES += \
     checkpoint_gc \
     otapreopt_script
 
+# Alarm
+PRODUCT_PACKAGES += \
+    vendor.qti.hardware.alarm@1.0 \
+    vendor.qti.hardware.alarm@1.0-impl \
+    vendor.qti.hardware.alarm@1.0.vendor \
+    vendor.qti.hardware.alarm@1.0-impl.vendor \
+    vendor.qti.hardware.alarm@1.0-service
+
 # ANT+
 PRODUCT_PACKAGES += \
     AntHalService-Soong \
@@ -424,6 +432,14 @@ PRODUCT_DEXPREOPT_SPEED_APPS += \
 
 # Power
 PRODUCT_PACKAGES += \
+    android.hardware.power@1.0 \
+    android.hardware.power@1.0.vendor \
+    android.hardware.power@1.1 \
+    android.hardware.power@1.1.vendor \
+    android.hardware.power@1.2 \
+    android.hardware.power@1.2.vendor \
+    android.hardware.power@1.3 \
+    android.hardware.power@1.3.vendor \
     android.hardware.power-service.lisa-libperfmgr \
     android.hardware.power.stats-service.laurel_sprout \
     libqti-perfd-client
@@ -432,7 +448,8 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/powerhint.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.json
 
 PRODUCT_SOONG_NAMESPACES += \
-    hardware/google/interfaces
+    hardware/google/interfaces \
+    hardware/interfaces/power
 
 # Public Libraries
 PRODUCT_COPY_FILES += \
