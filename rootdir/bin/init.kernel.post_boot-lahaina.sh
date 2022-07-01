@@ -119,7 +119,7 @@ echo 0-3 > /dev/cpuset/system-background/cpus
 # jared.wu@OPTIMIZATION, 2020/09/22, Make foreground run on cpu 0-6
 echo 0-2,4-6 > /dev/cpuset/foreground/cpus
 echo 0-7 > /dev/cpuset/top-app/cpus
-echo 0-5 > /dev/cpuset/restricted/cpus
+echo 0-3 > /dev/cpuset/restricted/cpus
 
 # Turn off scheduler boost at the end
 echo 0 > /proc/sys/kernel/sched_boost
@@ -128,7 +128,6 @@ echo 0 > /proc/sys/kernel/sched_boost
 echo "schedhorizon" > /sys/devices/system/cpu/cpufreq/policy0/scaling_governor
 echo 0 > /sys/devices/system/cpu/cpufreq/policy0/schedhorizon/down_rate_limit_us
 echo 0 > /sys/devices/system/cpu/cpufreq/policy0/schedhorizon/up_rate_limit_us
-echo 691200 > /sys/devices/system/cpu/cpufreq/policy0/scaling_min_freq
 
 # configure governor settings for gold cluster
 echo "schedhorizon" > /sys/devices/system/cpu/cpufreq/policy4/scaling_governor

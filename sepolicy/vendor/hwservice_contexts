@@ -12,7 +12,6 @@ vendor.dolby.hardware.dms::IDms                                               u:
         
 # Turbo adapter
 vendor.google.google_battery::IGoogleBattery                                  u:object_r:hal_turbo_adapter_hwservice:s0
-vendor.lineage.touch::IHighTouchPollingRate                                   u:object_r:hal_lineage_touch_hwservice:s0
 
-# Alarm
-vendor.qti.hardware.alarm::IAlarm                                      u:object_r:hal_alarm_qti_hwservice:s0
+# Touch
+vendor.lineage.touch::IHighTouchPollingRate                                   u:object_r:hal_lineage_touch_hwservice:s0

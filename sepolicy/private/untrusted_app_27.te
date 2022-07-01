@@ -11,3 +11,5 @@ allow untrusted_app_27 mnt_sdcard_file:lnk_file { ioctl read getattr lock map op
 allow untrusted_app_27 self:netlink_route_socket { bind nlmsg_readpriv };
 allow untrusted_app_27 proc_zoneinfo:file { read };
 allow untrusted_app_27 sysfs_net:dir { search };
+allow untrusted_app_27 sysfs_net:file { read };
+allow untrusted_app_27 cache_file:lnk_file { read };
