@@ -55,7 +55,7 @@ TARGET_2ND_CPU_ABI2 := armeabi
 TARGET_2ND_CPU_VARIANT := cortex-a76
 
 # Assert
-TARGET_OTA_ASSERT_DEVICE := haydn,haydnin
+TARGET_OTA_ASSERT_DEVICE := haydn,haydnpro,haydn_in,haydnin
 
 # Audio
 AUDIO_FEATURE_ENABLED_DS2_DOLBY_DAP := true
@@ -101,6 +101,7 @@ DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := $(DEVICE_PATH)/configs/hidl/framew
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += vendor/lineage/config/device_framework_matrix.xml
 DEVICE_MANIFEST_FILE := $(DEVICE_PATH)/configs/hidl/manifest.xml
 DEVICE_MATRIX_FILE := $(DEVICE_PATH)/configs/hidl/compatibility_matrix.xml
+
 ODM_MANIFEST_SKUS += nfc
 ODM_MANIFEST_NFC_FILES := \
     $(DEVICE_PATH)/configs/hidl/manifest-nfc.xml
@@ -129,7 +130,6 @@ BOARD_RAMDISK_USE_LZ4 := true
 # Kernel modules
 BOOT_KERNEL_MODULES := \
     hwid.ko \
-    fts_touch_spi.ko \
     focaltech_touch.ko \
     xiaomi_touch.ko
 
@@ -184,9 +184,9 @@ TARGET_USERIMAGES_USE_F2FS := true
 TARGET_BOARD_PLATFORM := lahaina
 
 # Properties
-TARGET_ODM_PROP += $(DEVICE_PATH)/odm.prop
-TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
-TARGET_VENDOR_PROP += $(DEVICE_PATH)/vendor.prop
+TARGET_ODM_PROP += $(DEVICE_PATH)/configs/properties/odm.prop
+TARGET_SYSTEM_PROP += $(DEVICE_PATH)/configs/properties/system.prop
+TARGET_VENDOR_PROP += $(DEVICE_PATH)/configs/properties/vendor.prop
 
 # QCOM
 BOARD_USES_QCOM_HARDWARE := true
@@ -205,7 +205,7 @@ ENABLE_VENDOR_RIL_SERVICE := true
 TARGET_SCREEN_DENSITY := 440
 
 # Security patch level
-VENDOR_SECURITY_PATCH := 2022-02-01
+VENDOR_SECURITY_PATCH := 2022-07-05
 
 # Sepolicy
 include device/qcom/sepolicy_vndr/SEPolicy.mk

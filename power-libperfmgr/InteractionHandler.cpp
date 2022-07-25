@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-#define LOG_TAG "powerhal-libperfmgr"
 #define ATRACE_TAG (ATRACE_TAG_POWER | ATRACE_TAG_HAL)
+#define LOG_TAG "powerhal-libperfmgr"
 
 #include <array>
 #include <memory>
@@ -133,6 +133,7 @@ void InteractionHandler::PerfLock() {
     if (!mHintManager->DoHint("INTERACTION")) {
         ALOGE("%s: do hint INTERACTION failed", __func__);
     }
+    ATRACE_INT("interaction_lock", 1);
 }
 
 void InteractionHandler::PerfRel() {
@@ -140,6 +141,7 @@ void InteractionHandler::PerfRel() {
     if (!mHintManager->EndHint("INTERACTION")) {
         ALOGE("%s: end hint INTERACTION failed", __func__);
     }
+    ATRACE_INT("interaction_lock", 0);
 }
 
 void InteractionHandler::Acquire(int32_t duration) {

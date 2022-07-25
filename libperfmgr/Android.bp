@@ -19,7 +19,7 @@ package {
 }
 
 cc_defaults {
-    name: "libperfmgr-lisa_defaults",
+    name: "libperfmgr_defaults",
     local_include_dirs: ["include"],
     shared_libs: [
         "libbase",
@@ -45,9 +45,9 @@ cc_defaults {
 }
 
 cc_library {
-    name: "libperfmgr-lisa",
+    name: "libperfmgr",
     vendor_available: true,
-    defaults: ["libperfmgr-lisa_defaults"],
+    defaults: ["libperfmgr_defaults"],
     export_include_dirs: ["include"],
     srcs: [
         "RequestGroup.cc",
@@ -60,9 +60,9 @@ cc_library {
 }
 
 cc_test {
-    name: "libperfmgr-lisa_test",
-    defaults: ["libperfmgr-lisa_defaults"],
-    static_libs: ["libperfmgr-lisa"],
+    name: "libperfmgr_test",
+    defaults: ["libperfmgr_defaults"],
+    static_libs: ["libperfmgr"],
     srcs: [
         "tests/RequestGroupTest.cc",
         "tests/FileNodeTest.cc",
@@ -74,8 +74,8 @@ cc_test {
 
 cc_binary {
     name: "perfmgr_config_verifier",
-    defaults: ["libperfmgr-lisa_defaults"],
-    static_libs: ["libperfmgr-lisa"],
+    defaults: ["libperfmgr_defaults"],
+    static_libs: ["libperfmgr"],
     srcs: [
         "tools/ConfigVerifier.cc",
     ]

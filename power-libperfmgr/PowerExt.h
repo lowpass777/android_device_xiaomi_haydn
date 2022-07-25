@@ -16,9 +16,12 @@
 
 #pragma once
 
-#include <string_view>
+#include <atomic>
+#include <memory>
+#include <thread>
 
-#include <android-base/unique_fd.h>
+#include <aidl/google/hardware/power/extension/pixel/BnPowerExt.h>
+#include <perfmgr/HintManager.h>
 
 namespace aidl {
 namespace google {
@@ -27,20 +30,18 @@ namespace power {
 namespace impl {
 namespace pixel {
 
-class DisplayLowPower {
+using ::android::perfmgr::HintManager;
+
+class PowerExt : public ::aidl::google::hardware::power::extension::pixel::BnPowerExt {
   public:
-    DisplayLowPower();
-    ~DisplayLowPower() {}
-    void Init();
-    void SetDisplayLowPower(bool enable);
+    PowerExt(std::shared_ptr<HintManager> hm) : mHintManager(hm) {}
+    ndk::ScopedAStatus setMode(const std::string &mode, bool enabled) override;
+    ndk::ScopedAStatus isModeSupported(const std::string &mode, bool *_aidl_return) override;
+    ndk::ScopedAStatus setBoost(const std::string &boost, int32_t durationMs) override;
+    ndk::ScopedAStatus isBoostSupported(const std::string &boost, bool *_aidl_return) override;
 
   private:
-    void ConnectPpsDaemon();
-    int SendPpsCommand(const std::string_view cmd);
-    void SetFoss(bool enable);
-
-    ::android::base::unique_fd mPpsSocket;
-    bool mFossStatus;
+    std::shared_ptr<HintManager> mHintManager;
 };
 
 }  // namespace pixel

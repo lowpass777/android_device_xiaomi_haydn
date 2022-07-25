@@ -9,8 +9,6 @@ vendor_internal_prop(vendor_dolby_loglevel_prop);
 # WLAN
 type vendor_wlan_prop, property_type;
 
-type vendor_thermal_normal_prop, property_type;
-
 type vendor_battery_defender_prop, property_type;
 
 type ims_prop, property_type;
@@ -23,4 +21,7 @@ type power_prop, property_type;
 
 # Xiaomi
 type vendor_xiaomi_prop, property_type;
+
+# Insmod
+vendor_internal_prop(vendor_device_prop)
 

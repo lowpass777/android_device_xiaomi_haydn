@@ -42,13 +42,6 @@ on early-init
     #Disable UFS clock gating
     write /sys/bus/platform/devices/1d84000.ufshc/clkgate_enable 0
 	
-on init
-    # Set Permissions for Power HAL
-    chown system system /dev/stune/top-app/schedtune.boost
-    chmod 0664 /dev/stune/top-app/schedtune.boost
-    chown system system /dev/cpu_dma_latency
-    chmod 0664 /dev/cpu_dma_latency
-	
 on early-boot
     write /sys/class/drm/card0-DSI-1/status "detect"
     write /sys/module/drm/parameters/vblankoffdelay -1
@@ -110,7 +103,7 @@ on boot
     chown system system /sys/class/backlight/panel1-backlight/max_brightness
 
     # Create directory used for display
-    mkdir /mnt/vendor//display 0770 system graphics
+    mkdir /mnt/vendor/persist/display 0770 system graphics
 
     # Create vpp directory
     mkdir /mnt/vendor/persist/vpp 0770 media media
@@ -131,15 +124,12 @@ on boot
     enable vendor.dataqti
     enable vendor.dataadpl
 
-# msm specific files that need to be created on /data
+    # msm specific files that need to be created on /data
 on post-fs-data
     mkdir /data/vendor/misc 01771 system system
 
     # Create directory used by display clients
     mkdir /data/vendor/display 0770 system graphics
-
-    # Change lm related dirs
-    mkdir /data/vendor/lm 0700 root root
 
     # Create directory used by media clients
     mkdir /data/vendor/media 0770 mediacodec media
@@ -238,13 +228,20 @@ on post-fs-data
     setprop vold.post_fs_data_done 1
 
 on property:sys.boot_completed=1
+    # Restrict permissions to socket file
+    # to hide Magisk & co.
+    chmod 440 /proc/net/unix
+
+    # Back to default VM settings
+    write /proc/sys/vm/dirty_expire_centisecs 3000
+    write /proc/sys/vm/dirty_background_ratio 10
+
     # Enable UFS clock scaling back
     write /sys/bus/platform/devices/1d84000.ufshc/clkscale_enable 0
 
     write /dev/cpuctl/top-app/cpu.uclamp.latency_sensitive 1
 
     write /dev/cpuset/audio-app/cpus 1-2
-    write /dev/cpuset/display/cpus 0-6
 
     #Enable UFS auto_hibern8 back
     write /sys/bus/platform/devices/1d84000.ufshc/auto_hibern8 5000

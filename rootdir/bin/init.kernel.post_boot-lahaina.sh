@@ -70,54 +70,29 @@ echo 0 > /sys/class/scsi_host/host0/../../../clkscale_enable
 # SSG
 echo 25 > /dev/blkio/background/blkio.ssg.max_available_ratio
 
-# Core control parameters for gold
-echo 2 > /sys/devices/system/cpu/cpu4/core_ctl/min_cpus
-echo 60 > /sys/devices/system/cpu/cpu4/core_ctl/busy_up_thres
-echo 30 > /sys/devices/system/cpu/cpu4/core_ctl/busy_down_thres
-echo 100 > /sys/devices/system/cpu/cpu4/core_ctl/offline_delay_ms
-echo 3 > /sys/devices/system/cpu/cpu4/core_ctl/task_thres
-
-# Core control parameters for gold+
-echo 0 > /sys/devices/system/cpu/cpu7/core_ctl/min_cpus
-echo 60 > /sys/devices/system/cpu/cpu7/core_ctl/busy_up_thres
-echo 30 > /sys/devices/system/cpu/cpu7/core_ctl/busy_down_thres
-echo 100 > /sys/devices/system/cpu/cpu7/core_ctl/offline_delay_ms
-echo 1 > /sys/devices/system/cpu/cpu7/core_ctl/task_thres
-
-# Controls how many more tasks should be eligible to run on gold CPUs
-# w.r.t number of gold CPUs available to trigger assist (max number of
-# tasks eligible to run on previous cluster minus number of CPUs in
-# the previous cluster).
-#
-# Setting to 1 by default which means there should be at least
-# 4 tasks eligible to run on gold cluster (tasks running on gold cores
-# plus misfit tasks on silver cores) to trigger assitance from gold+.
-echo 1 > /sys/devices/system/cpu/cpu7/core_ctl/nr_prev_assist_thresh
-
-# Disable Core control on silver
+# 	# Disable WALT Core control
 echo 0 > /sys/devices/system/cpu/cpu0/core_ctl/enable
+echo 0 > /sys/devices/system/cpu/cpu4/core_ctl/enable
+echo 0 > /sys/devices/system/cpu/cpu7/core_ctl/enable
 
 # Setting b.L scheduler parameters
 echo 95 95 > /proc/sys/kernel/sched_upmigrate
-echo 85 85 > /proc/sys/kernel/sched_downmigrate
-echo 100 > /proc/sys/kernel/sched_group_upmigrate
-echo 85 > /proc/sys/kernel/sched_group_downmigrate
+echo 65 65 > /proc/sys/kernel/sched_downmigrate
+echo 85 > /proc/sys/kernel/sched_group_upmigrate
+echo 71 > /proc/sys/kernel/sched_group_downmigrate
 echo 1 > /proc/sys/kernel/sched_walt_rotate_big_tasks
 echo 400000000 > /proc/sys/kernel/sched_coloc_downmigrate_ns
-echo 39000000 39000000 39000000 39000000 39000000 39000000 39000000 5000000 > /proc/sys/kernel/sched_coloc_busy_hyst_cpu_ns
-echo 240 > /proc/sys/kernel/sched_coloc_busy_hysteresis_enable_cpus
-echo 10 10 10 10 10 10 10 95 > /proc/sys/kernel/sched_coloc_busy_hyst_cpu_busy_pct
 
 # set the threshold for low latency task boost feature which prioritize
 # binder activity tasks
 echo 325 > /proc/sys/kernel/walt_low_latency_task_threshold
 
 # cpuset parameters
-echo 0-3 > /dev/cpuset/background/cpus
+echo 0-2 > /dev/cpuset/background/cpus
 echo 1-2 > /dev/cpuset/audio-app/cpus
-echo 0-3 > /dev/cpuset/system-background/cpus
-# jared.wu@OPTIMIZATION, 2020/09/22, Make foreground run on cpu 0-6
+echo 0-2 > /dev/cpuset/system-background/cpus
 echo 0-2,4-6 > /dev/cpuset/foreground/cpus
+echo 4-6 > /dev/cpuset/foreground/boost/cpus
 echo 0-7 > /dev/cpuset/top-app/cpus
 echo 0-3 > /dev/cpuset/restricted/cpus
 
@@ -127,17 +102,20 @@ echo 0 > /proc/sys/kernel/sched_boost
 # configure governor settings for silver cluster
 echo "schedhorizon" > /sys/devices/system/cpu/cpufreq/policy0/scaling_governor
 echo 0 > /sys/devices/system/cpu/cpufreq/policy0/schedhorizon/down_rate_limit_us
-echo 0 > /sys/devices/system/cpu/cpufreq/policy0/schedhorizon/up_rate_limit_us
+echo 1000 > /sys/devices/system/cpu/cpufreq/policy0/schedhorizon/up_rate_limit_us
+echo 0 > /sys/devices/system/cpu/cpufreq/policy0/schedhorizon/pl
 
 # configure governor settings for gold cluster
 echo "schedhorizon" > /sys/devices/system/cpu/cpufreq/policy4/scaling_governor
 echo 0 > /sys/devices/system/cpu/cpufreq/policy4/schedhorizon/down_rate_limit_us
-echo 0 > /sys/devices/system/cpu/cpufreq/policy4/schedhorizon/up_rate_limit_us
+echo 1000 > /sys/devices/system/cpu/cpufreq/policy4/schedhorizon/up_rate_limit_us
+echo 0 > /sys/devices/system/cpu/cpufreq/policy4/schedhorizon/pl
 
 # configure governor settings for gold+ cluster
 echo "schedhorizon" > /sys/devices/system/cpu/cpufreq/policy7/scaling_governor
 echo 0 > /sys/devices/system/cpu/cpufreq/policy7/schedhorizon/down_rate_limit_us
-echo 0 > /sys/devices/system/cpu/cpufreq/policy7/schedhorizon/up_rate_limit_us
+echo 2000 > /sys/devices/system/cpu/cpufreq/policy7/schedhorizon/up_rate_limit_us
+echo 0 > /sys/devices/system/cpu/cpufreq/policy7/schedhorizon/pl
 
 # configure bus-dcvs
 for device in /sys/devices/platform/soc
@@ -147,7 +125,7 @@ do
 		cat $cpubw/available_frequencies | cut -d " " -f 1 > $cpubw/min_freq
 		echo "4577 7110 9155 12298 14236 15258" > $cpubw/bw_hwmon/mbps_zones
 		echo 4 > $cpubw/bw_hwmon/sample_ms
-		echo 80 > $cpubw/bw_hwmon/io_percent
+		echo 50 > $cpubw/bw_hwmon/io_percent
 		echo 20 > $cpubw/bw_hwmon/hist_memory
 		echo 10 > $cpubw/bw_hwmon/hyst_length
 		echo 30 > $cpubw/bw_hwmon/down_thres
@@ -174,7 +152,7 @@ do
 		echo 0 > $llccbw/bw_hwmon/guard_band_mbps
 		echo 250 > $llccbw/bw_hwmon/up_scale
 		echo 1600 > $llccbw/bw_hwmon/idle_mbps
-		echo 6515 > $llccbw/max_freq
+		echo 5931 > $llccbw/max_freq
 		echo 40 > $llccbw/polling_interval
 	done
 
@@ -286,4 +264,13 @@ echo ${UFS_INFO}> /sys/project_info/add_component
 #liochen@SYSTEM, 2020/11/02, Add for enable ufs performance
 echo 0 > /sys/class/scsi_host/host0/../../../clkscale_enable
 
+# Disable EAS
+echo 0 > /proc/sys/kernel/sched_energy_aware
+
+# Enable PowerHAL hint processing
+setprop vendor.powerhal.init 1
+
+setprop vendor.post_boot.parsed 1
+
 pm disable com.google.android.gms/.chimera.GmsIntentOperationService
+#

@@ -1,1 +1,2 @@
 allow shell hal_power_hwservice:hwservice_manager { find };
+allow shell vendor_sysfs_devfreq:dir { search };

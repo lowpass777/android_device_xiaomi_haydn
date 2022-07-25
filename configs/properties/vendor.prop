@@ -128,7 +128,6 @@ persist.vendor.qcom.bluetooth.aptxadaptiver2_1_support=true
 persist.vendor.qcom.bluetooth.scram.enabled=false
 persist.vendor.qcom.bluetooth.twsp_state.enabled=false
 ro.bluetooth.a2dp_offload.supported=true
-vendor.bluetooth.soc=hastings
 
 # Camera
 camera.disable_zsl_mode=true
@@ -163,6 +162,7 @@ persist.vendor.dpmhalservice.enable=1
 drm.service.enabled=true
 
 # Fingerprint
+persist.vendor.sys.fp.vendor=fpc
 ro.hardware.fingerprint=fpc
 
 # FRP
@@ -175,9 +175,9 @@ vendor.gatekeeper.disable_spu=true
 debug.egl.hw=0
 debug.hwui.renderer=skiagl
 debug.mdpcomp.logs=0
-debug.renderengine.backend=skiaglthreaded
 debug.sf.disable_client_composition_cache=1
 debug.sf.enable_advanced_sf_phase_offset=1
+debug.renderengine.backend=threaded
 debug.sf.high_fps_early_gl_phase_offset_ns=-2000000
 debug.sf.high_fps_early_phase_offset_ns=-4000000
 debug.sf.high_fps_late_app_phase_offset_ns=1000000
