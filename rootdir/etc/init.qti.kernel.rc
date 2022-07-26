@@ -30,14 +30,6 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #=============================================================================
 
-on init
-    # Update scheduler tunables
-    write /dev/cpuctl/foreground/cpu.uclamp.sched_boost_no_override 1
-    write /dev/cpuctl/top-app/cpu.uclamp.sched_boost_no_override 1
-    write /dev/cpuctl/background/cpu.uclamp.colocate 0
-    write /dev/cpuctl/foreground/cpu.uclamp.colocate 0
-    write /dev/cpuctl/top-app/cpu.uclamp.colocate 1
-
 on early-boot
     # Allow subsystem (modem etc) debugging
     write /sys/kernel/boot_adsp/boot 1

@@ -238,46 +238,6 @@
       "Type": "File"
     },
     {
-      "Name": "FgSchedtunePreferIdle",
-      "Path": "/dev/stune/foreground/schedtune.prefer_idle",
-      "Values": [
-        "1",
-        "0"
-      ],
-      "DefaultIndex": 0,
-      "ResetOnInit": true
-    },
-    {
-      "Name": "TASchedtuneBoost",
-      "Path": "/dev/stune/top-app/schedtune.boost",
-      "Values": [
-        "30",
-        "10",
-        "0"
-      ],
-      "ResetOnInit": true,
-      "Type": "File"
-    },
-    {
-      "Name": "TASchedtuneHighCap",
-      "Path": "/dev/stune/top-app/schedtune.prefer_high_cap",
-      "Values": [
-        "1",
-        "0"
-      ],
-      "ResetOnInit": true
-    },
-    {
-      "Name": "TASchedtunePreferIdle",
-      "Path": "/dev/stune/top-app/schedtune.prefer_idle",
-      "Values": [
-        "1",
-        "0"
-      ],
-      "DefaultIndex": 0,
-      "ResetOnInit": true
-    },
-    {
       "Name": "CDCpusetCpus",
       "Path": "/dev/cpuset/camera-daemon/cpus",
       "Values": [
@@ -395,18 +355,6 @@
       "Value": "SUSTAINED_PERFORMANCE"
     },
     {
-      "PowerHint": "INTERACTION",
-      "Node": "TASchedtuneBoost",
-      "Duration": 0,
-      "Value": "30"
-    },
-    {
-      "PowerHint": "INTERACTION",
-      "Node": "TASchedtuneHighCap",
-      "Duration": 0,
-      "Value": "1"
-    },
-    {
       "PowerHint": "DEVICE_IDLE",
       "Node": "CPULittleClusterMaxFreq",
       "Duration": 0,
@@ -501,24 +449,6 @@
       "Node": "GPUIdleTimer",
       "Duration": 2000,
       "Value": "58"
-    },
-    {
-      "PowerHint": "DISPLAY_INACTIVE",
-      "Node": "TASchedtuneBoost",
-      "Duration": 0,
-      "Value": "0"
-    },
-    {
-      "PowerHint": "DISPLAY_INACTIVE",
-      "Node": "FgSchedtunePreferIdle",
-      "Duration": 0,
-      "Value": "0"
-    },
-    {
-      "PowerHint": "DISPLAY_INACTIVE",
-      "Node": "TASchedtunePreferIdle",
-      "Duration": 0,
-      "Value": "0"
     },
     {
       "PowerHint": "EXPENSIVE_RENDERING",
