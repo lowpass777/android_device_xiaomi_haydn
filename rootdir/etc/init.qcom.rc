@@ -25,6 +25,7 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
+import /vendor/etc/init/hw/init.qcom.power.rc
 import /vendor/etc/init/hw/init.qcom.usb.rc
 import /vendor/etc/init/hw/init.target.rc
 import /vendor/etc/init/hw/init.power.rc
@@ -232,16 +233,16 @@ on property:sys.boot_completed=1
     # to hide Magisk & co.
     chmod 440 /proc/net/unix
 
+    # Runtime fs tuning
+    write /sys/block/sda/queue/nr_requests 128
+    write /sys/block/sda/queue/iostats 1
+
     # Back to default VM settings
     write /proc/sys/vm/dirty_expire_centisecs 3000
     write /proc/sys/vm/dirty_background_ratio 10
 
     # Enable UFS clock scaling back
     write /sys/bus/platform/devices/1d84000.ufshc/clkscale_enable 0
-
-    write /dev/cpuctl/top-app/cpu.uclamp.latency_sensitive 1
-
-    write /dev/cpuset/audio-app/cpus 1-2
 
     #Enable UFS auto_hibern8 back
     write /sys/bus/platform/devices/1d84000.ufshc/auto_hibern8 5000

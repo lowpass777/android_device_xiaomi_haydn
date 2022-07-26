@@ -55,12 +55,24 @@ on boot
     write /sys/block/sdf/queue/scheduler ssg
 
     # Update io-scheduler tunables
+    write /sys/block/sda/queue/iostats 0
+    write /sys/block/sdb/queue/iostats 0
+    write /sys/block/sdc/queue/iostats 0
+    write /sys/block/sdd/queue/iostats 0
+    write /sys/block/sde/queue/iostats 0
+    write /sys/block/sdf/queue/iostats 0
     write /sys/block/sda/queue/iosched/slice_idle 0
     write /sys/block/sdb/queue/iosched/slice_idle 0
     write /sys/block/sdc/queue/iosched/slice_idle 0
     write /sys/block/sdd/queue/iosched/slice_idle 0
     write /sys/block/sde/queue/iosched/slice_idle 0
     write /sys/block/sdf/queue/iosched/slice_idle 0
+    write /sys/block/sda/queue/nr_requests 256
+    write /sys/block/sdb/queue/nr_requests 256
+    write /sys/block/sdc/queue/nr_requests 256
+    write /sys/block/sdd/queue/nr_requests 256
+    write /sys/block/sde/queue/nr_requests 256
+    write /sys/block/sdf/queue/nr_requests 256
 
 service kernel-post-boot /vendor/bin/sh /vendor/bin/init.kernel.post_boot-lahaina.sh
     class core

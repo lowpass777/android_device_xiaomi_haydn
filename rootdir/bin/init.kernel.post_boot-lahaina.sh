@@ -51,7 +51,6 @@ if ! grep -q zram /proc/swaps; then
   # Set swap size to half of MemTotal
   # Align by 4 MiB
   expr $MemKb / 2 '*' 1024 / 4194304 '*' 4194304 > /sys/block/zram0/disksize
-  echo 160 > /proc/sys/vm/swappiness
 
   mkswap /dev/block/zram0
   swapon /dev/block/zram0
@@ -101,20 +100,19 @@ echo 0 > /proc/sys/kernel/sched_boost
 
 # configure governor settings for silver cluster
 echo "schedhorizon" > /sys/devices/system/cpu/cpufreq/policy0/scaling_governor
-echo 0 > /sys/devices/system/cpu/cpufreq/policy0/schedhorizon/down_rate_limit_us
+echo 1000 > /sys/devices/system/cpu/cpufreq/policy0/schedhorizon/down_rate_limit_us
 echo 1000 > /sys/devices/system/cpu/cpufreq/policy0/schedhorizon/up_rate_limit_us
 echo 0 > /sys/devices/system/cpu/cpufreq/policy0/schedhorizon/pl
 
-# configure governor settings for gold cluster
 echo "schedhorizon" > /sys/devices/system/cpu/cpufreq/policy4/scaling_governor
-echo 0 > /sys/devices/system/cpu/cpufreq/policy4/schedhorizon/down_rate_limit_us
+echo 1000 > /sys/devices/system/cpu/cpufreq/policy4/schedhorizon/down_rate_limit_us
 echo 1000 > /sys/devices/system/cpu/cpufreq/policy4/schedhorizon/up_rate_limit_us
 echo 0 > /sys/devices/system/cpu/cpufreq/policy4/schedhorizon/pl
 
 # configure governor settings for gold+ cluster
 echo "schedhorizon" > /sys/devices/system/cpu/cpufreq/policy7/scaling_governor
-echo 0 > /sys/devices/system/cpu/cpufreq/policy7/schedhorizon/down_rate_limit_us
-echo 2000 > /sys/devices/system/cpu/cpufreq/policy7/schedhorizon/up_rate_limit_us
+echo 1000 > /sys/devices/system/cpu/cpufreq/policy7/schedhorizon/down_rate_limit_us
+echo 1000 > /sys/devices/system/cpu/cpufreq/policy7/schedhorizon/up_rate_limit_us
 echo 0 > /sys/devices/system/cpu/cpufreq/policy7/schedhorizon/pl
 
 # configure bus-dcvs
@@ -263,14 +261,6 @@ UFS_INFO="UFS "`echo ${UFS_PN} | tr -d "\r"`" "`echo ${UFS_VENDOR} | tr -d "\r"`
 echo ${UFS_INFO}> /sys/project_info/add_component
 #liochen@SYSTEM, 2020/11/02, Add for enable ufs performance
 echo 0 > /sys/class/scsi_host/host0/../../../clkscale_enable
-
-# Disable EAS
-echo 0 > /proc/sys/kernel/sched_energy_aware
-
-# Enable PowerHAL hint processing
-setprop vendor.powerhal.init 1
-
-setprop vendor.post_boot.parsed 1
 
 pm disable com.google.android.gms/.chimera.GmsIntentOperationService
 #

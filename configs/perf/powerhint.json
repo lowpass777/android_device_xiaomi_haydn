@@ -348,15 +348,6 @@
       "Type": "File"
     },
     {
-      "Name": "UfsClkGateEnable",
-      "Path": "/sys/devices/platform/soc/1d84000.ufshc/clkgate_enable",
-      "Values": [
-        "0",
-        "1"
-      ],
-      "ResetOnInit": true
-    },
-    {
       "Name": "PowerHALMainState",
       "Path": "vendor.powerhal.state",
       "Values": [
@@ -510,12 +501,6 @@
       "Node": "GPUIdleTimer",
       "Duration": 2000,
       "Value": "58"
-    },
-    {
-      "PowerHint": "LAUNCH",
-      "Node": "UfsClkGateEnable",
-      "Duration": 2000,
-      "Value": "0"
     },
     {
       "PowerHint": "DISPLAY_INACTIVE",
