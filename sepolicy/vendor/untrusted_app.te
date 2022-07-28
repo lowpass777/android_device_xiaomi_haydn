@@ -24,3 +24,4 @@ allow untrusted_app metadata_file:dir { getattr };
 allow untrusted_app proc_tty_drivers:file { read };
 allow untrusted_app cache_file:lnk_file { read };
 allow untrusted_app proc_tty_drivers:file { open };
+allow untrusted_app proc_tty_drivers:file { getattr };

@@ -63,28 +63,8 @@ ddr_type=`od -An -tx /proc/device-tree/memory/ddr_device_type`
 ddr_type4="07"
 ddr_type5="08"
 
-#liochen@SYSTEM, 2020/11/02, Add for enable ufs performance
-echo 0 > /sys/class/scsi_host/host0/../../../clkscale_enable
-
 # SSG
 echo 25 > /dev/blkio/background/blkio.ssg.max_available_ratio
-
-# 	# Disable WALT Core control
-echo 0 > /sys/devices/system/cpu/cpu0/core_ctl/enable
-echo 0 > /sys/devices/system/cpu/cpu4/core_ctl/enable
-echo 0 > /sys/devices/system/cpu/cpu7/core_ctl/enable
-
-# Setting b.L scheduler parameters
-echo 95 95 > /proc/sys/kernel/sched_upmigrate
-echo 65 65 > /proc/sys/kernel/sched_downmigrate
-echo 85 > /proc/sys/kernel/sched_group_upmigrate
-echo 71 > /proc/sys/kernel/sched_group_downmigrate
-echo 1 > /proc/sys/kernel/sched_walt_rotate_big_tasks
-echo 400000000 > /proc/sys/kernel/sched_coloc_downmigrate_ns
-
-# set the threshold for low latency task boost feature which prioritize
-# binder activity tasks
-echo 325 > /proc/sys/kernel/walt_low_latency_task_threshold
 
 # cpuset parameters
 echo 0-2 > /dev/cpuset/background/cpus
@@ -95,34 +75,6 @@ echo 4-6 > /dev/cpuset/foreground/boost/cpus
 echo 0-7 > /dev/cpuset/top-app/cpus
 echo 0-3 > /dev/cpuset/restricted/cpus
 
-#Uclamp tuning
-sysctl -w kernel.sched_util_clamp_min_rt_default=96
-sysctl -w kernel.sched_util_clamp_min=128
-
-#top-app
-echo max > /dev/cpuset/top-app/uclamp.max
-echo 20  > /dev/cpuset/top-app/uclamp.min
-echo 1   > /dev/cpuset/top-app/uclamp.boosted
-echo 1   > /dev/cpuset/top-app/uclamp.latency_sensitive
-
-#foreground
-echo 50 > /dev/cpuset/foreground/uclamp.max
-echo 20 > /dev/cpuset/foreground/uclamp.min
-echo 0  > /dev/cpuset/foreground/uclamp.boosted
-echo 0  > /dev/cpuset/foreground/uclamp.latency_sensitive
-
-#background
-echo max > /dev/cpuset/background/uclamp.max
-echo 20  > /dev/cpuset/background/uclamp.min
-echo 0   > /dev/cpuset/background/uclamp.boosted
-echo 0   > /dev/cpuset/background/uclamp.latency_sensitive
-
-#system-background
-echo 50 > /dev/cpuset/system-background/uclamp.max
-echo 10 > /dev/cpuset/system-background/uclamp.min
-echo 0  > /dev/cpuset/system-background/uclamp.boosted
-echo 0  > /dev/cpuset/system-background/uclamp.latency_sensitive
-
 # Turn off scheduler boost at the end
 echo 0 > /proc/sys/kernel/sched_boost
 
@@ -130,18 +82,15 @@ echo 0 > /proc/sys/kernel/sched_boost
 echo "schedhorizon" > /sys/devices/system/cpu/cpufreq/policy0/scaling_governor
 echo 1000 > /sys/devices/system/cpu/cpufreq/policy0/schedhorizon/down_rate_limit_us
 echo 1000 > /sys/devices/system/cpu/cpufreq/policy0/schedhorizon/up_rate_limit_us
-echo 0 > /sys/devices/system/cpu/cpufreq/policy0/schedhorizon/pl
 
 echo "schedhorizon" > /sys/devices/system/cpu/cpufreq/policy4/scaling_governor
 echo 1000 > /sys/devices/system/cpu/cpufreq/policy4/schedhorizon/down_rate_limit_us
 echo 1000 > /sys/devices/system/cpu/cpufreq/policy4/schedhorizon/up_rate_limit_us
-echo 0 > /sys/devices/system/cpu/cpufreq/policy4/schedhorizon/pl
 
 # configure governor settings for gold+ cluster
 echo "schedhorizon" > /sys/devices/system/cpu/cpufreq/policy7/scaling_governor
 echo 1000 > /sys/devices/system/cpu/cpufreq/policy7/schedhorizon/down_rate_limit_us
 echo 1000 > /sys/devices/system/cpu/cpufreq/policy7/schedhorizon/up_rate_limit_us
-echo 0 > /sys/devices/system/cpu/cpufreq/policy7/schedhorizon/pl
 
 # configure bus-dcvs
 for device in /sys/devices/platform/soc

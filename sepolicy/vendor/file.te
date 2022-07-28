@@ -49,4 +49,5 @@ type ipa_dev, file_type;
 
 type proc_dirty_ratio, fs_type, proc_type;
 
+type vendor_thermal_data_file, file_type, data_file_type;
 
