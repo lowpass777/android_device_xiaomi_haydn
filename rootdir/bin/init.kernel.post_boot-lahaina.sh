@@ -90,7 +90,7 @@ echo 1000 > /sys/devices/system/cpu/cpufreq/policy4/schedhorizon/up_rate_limit_u
 # configure governor settings for gold+ cluster
 echo "schedhorizon" > /sys/devices/system/cpu/cpufreq/policy7/scaling_governor
 echo 1000 > /sys/devices/system/cpu/cpufreq/policy7/schedhorizon/down_rate_limit_us
-echo 1000 > /sys/devices/system/cpu/cpufreq/policy7/schedhorizon/up_rate_limit_us
+echo 2000 > /sys/devices/system/cpu/cpufreq/policy7/schedhorizon/up_rate_limit_us
 
 # configure bus-dcvs
 for device in /sys/devices/platform/soc
