@@ -130,6 +130,7 @@ BOARD_RAMDISK_USE_LZ4 := true
 # Kernel modules
 BOOT_KERNEL_MODULES := \
     hwid.ko \
+    fts_touch_spi.ko \
     focaltech_touch.ko \
     xiaomi_touch.ko
 
@@ -198,6 +199,7 @@ BOARD_USES_RECOVERY_AS_BOOT := true
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/etc/fstab.qcom
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 TARGET_USES_MKE2FS := true
+TARGET_RECOVERY_UI_BLANK_UNBLANK_ON_INIT := true
 # RIL
 ENABLE_VENDOR_RIL_SERVICE := true
 

@@ -6,10 +6,10 @@ vendor.bluetooth.soc=hastings
 persist.vendor.cne.feature=1
 
 # Charger
-ro.charger.enable_suspend=true
+#ro.charger.enable_suspend=true
 
 # Dolby
-persist.pixelpropsutils.spoof_netflix=true
+#persist.pixelpropsutils.spoof_netflix=true
 
 # Graphics
 debug.sf.enable_hwc_vds=1
