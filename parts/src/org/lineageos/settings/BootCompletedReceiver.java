@@ -24,7 +24,6 @@ import android.content.SharedPreferences;
 import android.util.Log;
 import androidx.preference.PreferenceManager;
 
-import org.lineageos.settings.doze.DozeUtils;
 import org.lineageos.settings.display.KcalUtils;
 import org.lineageos.settings.refreshrate.RefreshUtils;
 
@@ -41,9 +40,6 @@ public class BootCompletedReceiver extends BroadcastReceiver {
         // KCAL
         if (KcalUtils.isKcalSupported())
             KcalUtils.writeCurrentSettings(sharedPrefs);
-
-        // Doze
-        DozeUtils.checkDozeService(context);
 
         // Refresh rate
         RefreshUtils.startService(context);
