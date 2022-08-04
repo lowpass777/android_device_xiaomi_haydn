@@ -96,11 +96,7 @@ on fs
     mkdir /mnt/vendor/persist/data 0700 system system
     mkdir /mnt/vendor/persist/haptics 0755 system system
     mkdir /mnt/vendor/persist/audio 0755 system system
-
-    mkdir /mnt/vendor/dsp 0770 root root
-    copy /vendor/dsp/cdsp/fastrpc_shell_3 /mnt/vendor/dsp/fastrpc_shell_3
-    chmod 0644 /mnt/vendor/dsp/fastrpc_shell_3
-    mount none /mnt/vendor/dsp/fastrpc_shell_3 /vendor/dsp/cdsp/fastrpc_shell_3 bind
+    write /sys/kernel/boot_adsp/boot 1
 
 on fs && property:ro.boot.product.vendor.sku=lahaina
     mkdir /mnt/vendor/spunvm 0660 system system
@@ -114,6 +110,11 @@ on property:ro.board.platform=lahaina
 on post-fs
     # Set RLIMIT_MEMLOCK to 64MB
     setrlimit 8 67108864 67108864
+
+    mkdir /mnt/vendor/dsp 0770 root root
+    copy /vendor/dsp/cdsp/fastrpc_shell_3 /mnt/vendor/dsp/fastrpc_shell_3
+    chmod 0644 /mnt/vendor/dsp/fastrpc_shell_3
+    mount none /mnt/vendor/dsp/fastrpc_shell_3 /vendor/dsp/cdsp/fastrpc_shell_3 bind
 
 on late-fs
     wait_for_prop hwservicemanager.ready true
@@ -180,7 +181,6 @@ on boot
 
 on init && property:ro.boot.mode=charger
     mount_all /vendor/etc/charger_fstab.qcom --early
-    write /sys/kernel/boot_adsp/boot 1
     wait /sys/class/power_supply/battery
 
 on charger
@@ -188,12 +188,6 @@ on charger
     setprop sys.usb.controller a600000.dwc3
     setprop sys.usb.configfs 1
     write /sys/module/lpm_levels/parameters/sleep_disabled N
-
-service vendor.lowi /vendor/bin/lowirpcd
-   class core
-   user system
-   group system wakelock
-   capabilities BLOCK_SUSPEND
 
 service vendor.pd_mapper /vendor/bin/pd-mapper
     class core
@@ -218,10 +212,17 @@ on property:init.svc.vendor.per_mgr=running
 on property:sys.shutdown.requested=*
     stop vendor.per_proxy
 
+on property:sys.boot_completed=1
 service adsprpcd /vendor/bin/adsprpcd
    class main
    user media
    group media
+   disabled
+
+service vendor.lowi /vendor/bin/sscrpcd
+   class core
+   user system
+   group system wakelock
    disabled
 
 service vendor.nv_mac /vendor/bin/nv_mac
