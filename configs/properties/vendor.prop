@@ -109,11 +109,6 @@ vendor.audio_hal.period_multiplier=3
 vendor.audio_hal.period_size=192
 vendor.voice.path.for.pcm.voip=true
 
-# Audio (Dolby)
-persist.vendor.audio_fx.current=dolby
-ro.vendor.dolby.dax.version=DS1_2.2.0.0_r1
-debug.stagefright.omx_default_rank.sw-audio=16
-
 # Bluetooth
 persist.vendor.bluetooth.ble_drop_power=true
 persist.bluetooth.a2dp_offload.cap=sbc-aac-aptx-aptxhd-ldac-lhdc
@@ -128,6 +123,7 @@ persist.vendor.qcom.bluetooth.aptxadaptiver2_1_support=true
 persist.vendor.qcom.bluetooth.scram.enabled=false
 persist.vendor.qcom.bluetooth.twsp_state.enabled=false
 ro.bluetooth.a2dp_offload.supported=true
+vendor.bluetooth.soc=hastings
 
 # Camera
 camera.disable_zsl_mode=true
