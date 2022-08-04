@@ -589,7 +589,9 @@ PRODUCT_COPY_FILES += \
 
 # VNDK
 PRODUCT_PACKAGES += \
-    vndservicemanager
+    vndservicemanager \
+    libvndksupport \
+    libvndksupport.vendor
 
 # Vulkan
 PRODUCT_PACKAGES += \

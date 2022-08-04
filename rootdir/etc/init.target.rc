@@ -116,6 +116,9 @@ on post-fs
     chmod 0644 /mnt/vendor/dsp/fastrpc_shell_3
     mount none /mnt/vendor/dsp/fastrpc_shell_3 /vendor/dsp/cdsp/fastrpc_shell_3 bind
 
+    # Stop service
+    stop vendor.sensors
+
 on late-fs
     wait_for_prop hwservicemanager.ready true
     mount_all /vendor/etc/fstab.qcom --late
@@ -217,12 +220,6 @@ service adsprpcd /vendor/bin/adsprpcd
    class main
    user media
    group media
-   disabled
-
-service vendor.lowi /vendor/bin/sscrpcd
-   class core
-   user system
-   group system wakelock
    disabled
 
 service vendor.nv_mac /vendor/bin/nv_mac
