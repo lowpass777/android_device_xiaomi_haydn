@@ -19,7 +19,9 @@ allow init flipendo:binder { transfer };
 allow init hal_power_service:service_manager { find };
 allow init hal_thermal_hwservice:hwservice_manager { add  find };
 allow init hidl_base_hwservice:hwservice_manager { add };
-
 allow init init:binder { call  transfer };
 allow init init:netlink_kobject_uevent_socket { getopt  setopt };
 allow init system_server:binder { call };
+allow init sysfs:file { write };
+
+

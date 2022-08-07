@@ -64,7 +64,6 @@ on early-init
 on init
     # Setup runtime cpusets
     write /dev/cpuset/top-app/cpus 0-7
-    write /dev/cpuset/foreground/cpus 0-2,4-6
     write /dev/cpuset/background/cpus 0-2
     write /dev/cpuset/system-background/cpus 0-2
     write /dev/cpuset/restricted/cpus 0-3
@@ -88,3 +87,7 @@ on init
     # report max frequency to unity tasks.
     write /proc/sys/kernel/sched_lib_name "com.miHoYo.,com.primatelabs.,UnityMain,libunity.so"
     write /proc/sys/kernel/sched_lib_mask_force 255
+
+on property:ro.board.platform=lahaina
+    # Setup foreground cpuset for display composer.
+    write /dev/cpuset/foreground/cpus 0-6

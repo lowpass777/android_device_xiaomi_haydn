@@ -1,1 +1,2 @@
 allow vendor_sensors sysfs:file { read write };
+r_dir_file(vendor_sensors, sysfs_project_info)

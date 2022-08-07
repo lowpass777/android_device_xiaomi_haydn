@@ -78,6 +78,9 @@ echo 0-3 > /dev/cpuset/restricted/cpus
 # Turn off scheduler boost at the end
 echo 0 > /proc/sys/kernel/sched_boost
 
+# Disable cdsprpcd daemon
+setprop vendor.fastrpc.disable.cdsprpcd.daemon 1
+
 # configure governor settings for silver cluster
 echo "schedhorizon" > /sys/devices/system/cpu/cpufreq/policy0/scaling_governor
 echo 1000 > /sys/devices/system/cpu/cpufreq/policy0/schedhorizon/down_rate_limit_us

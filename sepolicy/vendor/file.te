@@ -16,9 +16,17 @@ type sysfs_power_supply, sysfs_type, fs_type;
 
 type sysfs_wireless_supply, fs_type, sysfs_type;
 
+type sysfs_project_info, sysfs_type, fs_type;
+
 type sysctl_dt2w, fs_type, sysfs_type;
 
 type ultrasound_device, dev_type;
+
+type sysfs_sensor, fs_type, sysfs_type, mlstrustedobject;
+
+type sensors, fs_type, sysfs_type, mlstrustedobject;
+
+type vendor_sysfs_iio, fs_type, sysfs_type;
 
 type sysfs_kgsl, sysfs_type, fs_type;
 
