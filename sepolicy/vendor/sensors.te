@@ -1,1 +1,4 @@
 r_dir_file(vendor_sensors, vendor_sysfs_graphics)
+
+# Access to wakelock sysfs
+wakelock_use(vendor_sensors)
