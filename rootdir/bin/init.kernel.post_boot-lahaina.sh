@@ -74,11 +74,8 @@ echo 0-2,4-6 > /dev/cpuset/foreground/cpus
 echo 0-7 > /dev/cpuset/top-app/cpus
 echo 0-3 > /dev/cpuset/restricted/cpus
 
-# Turn off scheduler boost at the end
-echo 0 > /proc/sys/kernel/sched_boost
-
-#  Turn off EAS
-echo 0 /proc/sys/kernel/sched_energy_aware
+#  Turn on EAS
+echo 1 /proc/sys/kernel/sched_energy_aware
 
 # Disable cdsprpcd daemon
 setprop vendor.fastrpc.disable.cdsprpcd.daemon 1
@@ -87,15 +84,18 @@ setprop vendor.fastrpc.disable.cdsprpcd.daemon 1
 echo "schedhorizon" > /sys/devices/system/cpu/cpufreq/policy0/scaling_governor
 echo 0 > /sys/devices/system/cpu/cpufreq/policy0/schedhorizon/down_rate_limit_us
 echo 1000 > /sys/devices/system/cpu/cpufreq/policy0/schedhorizon/up_rate_limit_us
+echo 1 > /sys/devices/system/cpu/cpufreq/policy0/schedhorizon/pl
 
 echo "schedhorizon" > /sys/devices/system/cpu/cpufreq/policy4/scaling_governor
 echo 0 > /sys/devices/system/cpu/cpufreq/policy4/schedhorizon/down_rate_limit_us
 echo 1000 > /sys/devices/system/cpu/cpufreq/policy4/schedhorizon/up_rate_limit_us
+echo 1 > /sys/devices/system/cpu/cpufreq/policy4/schedhorizon/pl
 
 # configure governor settings for gold+ cluster
 echo "schedhorizon" > /sys/devices/system/cpu/cpufreq/policy7/scaling_governor
 echo 0 > /sys/devices/system/cpu/cpufreq/policy7/schedhorizon/down_rate_limit_us
 echo 2000 > /sys/devices/system/cpu/cpufreq/policy7/schedhorizon/up_rate_limit_us
+echo 1 > /sys/devices/system/cpu/cpufreq/policy7/schedhorizon/pl
 
 # configure bus-dcvs
 for device in /sys/devices/platform/soc
