@@ -84,18 +84,15 @@ setprop vendor.fastrpc.disable.cdsprpcd.daemon 1
 echo "schedhorizon" > /sys/devices/system/cpu/cpufreq/policy0/scaling_governor
 echo 0 > /sys/devices/system/cpu/cpufreq/policy0/schedhorizon/down_rate_limit_us
 echo 1000 > /sys/devices/system/cpu/cpufreq/policy0/schedhorizon/up_rate_limit_us
-echo 1 > /sys/devices/system/cpu/cpufreq/policy0/schedhorizon/pl
 
 echo "schedhorizon" > /sys/devices/system/cpu/cpufreq/policy4/scaling_governor
 echo 0 > /sys/devices/system/cpu/cpufreq/policy4/schedhorizon/down_rate_limit_us
 echo 1000 > /sys/devices/system/cpu/cpufreq/policy4/schedhorizon/up_rate_limit_us
-echo 1 > /sys/devices/system/cpu/cpufreq/policy4/schedhorizon/pl
 
 # configure governor settings for gold+ cluster
 echo "schedhorizon" > /sys/devices/system/cpu/cpufreq/policy7/scaling_governor
 echo 0 > /sys/devices/system/cpu/cpufreq/policy7/schedhorizon/down_rate_limit_us
 echo 2000 > /sys/devices/system/cpu/cpufreq/policy7/schedhorizon/up_rate_limit_us
-echo 1 > /sys/devices/system/cpu/cpufreq/policy7/schedhorizon/pl
 
 # configure bus-dcvs
 for device in /sys/devices/platform/soc

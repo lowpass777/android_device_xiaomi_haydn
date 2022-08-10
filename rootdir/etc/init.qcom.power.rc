@@ -49,17 +49,7 @@ on property:sys.boot_completed=1
 
 on early-init
      # Disable EAS
-    write /proc/sys/kernel/sched_energy_aware 1
-
-    # configure governor settings for little cluster
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor schedhorizon
-    write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/up_rate_limit_us 1000
-    write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/down_rate_limit_us 0
-
-    # configure governor settings for big cluster
-    write /sys/devices/system/cpu/cpu6/cpufreq/scaling_governor schedhorizon
-    write /sys/devices/system/cpu/cpu6/cpufreq/schedutil/up_rate_limit_us 1000
-    write /sys/devices/system/cpu/cpu6/cpufreq/schedutil/down_rate_limit_us 0
+    write /proc/sys/kernel/sched_energy_aware 0
 
 on init
     # Setup runtime cpusets
