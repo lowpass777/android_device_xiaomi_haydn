@@ -45,4 +45,7 @@ persist.device_config.runtime_native.usap_pool_enabled=true
 persist.vendor.qti.inputopts.enable=true
 persist.vendor.qti.inputopts.movetouchslop=0.6
 
+# Disable remote keyguard animation
+persist.wm.enable_remote_keyguard_animation=0
+
 

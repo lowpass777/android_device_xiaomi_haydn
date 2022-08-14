@@ -57,7 +57,6 @@
 /(vendor|system/vendor)/lib64/vendor\.qti\.imsrtpservice@3\.0\.so		u:object_r:same_process_hal_file:s0
 
 # Sensors
-/dev/akm09970                                                                                                                   u:object_r:hall_device:s0
 /vendor/bin/hw/android\.hardware\.sensors@2.1-service\.haydn-multihal                     u:object_r:hal_sensors_default_exec:s0
 
 # Thermal
@@ -67,6 +66,7 @@
 
 # Touch
 /vendor/bin/hw/vendor\.lineage\.touch@1\.0-service\.xiaomi_sm8350         u:object_r:hal_lineage_touch_default_exec:s0
+/sys/devices/virtual/touch/touch_dev/bump_sample_rate                    u:object_r:sysfs_htsr:s0
 
 # Vibrator
 /vendor/bin/hw/vendor\.qti\.hardware\.vibrator\.service\.haydn                            u:object_r:hal_vibrator_default_exec:s0

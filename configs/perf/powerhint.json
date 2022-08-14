@@ -298,16 +298,6 @@
       "Type": "File"
     },
     {
-      "Name": "EnergyAware",
-      "Path": "/proc/sys/kernel/sched_energy_aware",
-      "Values": [
-        "0",
-        "1"
-      ],
-      "ResetOnInit": true,
-      "Type": "File"
-    },
-    {
       "Name": "PowerHALMainState",
       "Path": "vendor.powerhal.state",
       "Values": [
@@ -375,79 +365,73 @@
     {
       "PowerHint": "LAUNCH",
       "Node": "CPUBigClusterMaxFreq",
-      "Duration": 2000,
+      "Duration": 1500,
       "Value": "1075200"
     },
     {
       "PowerHint": "LAUNCH",
       "Node": "CPUBigPlusClusterMaxFreq",
-      "Duration": 2000,
+      "Duration": 1500,
       "Value": "1075200"
     },
     {
       "PowerHint": "LAUNCH",
       "Node": "CPULittleClusterMaxFreq",
-      "Duration": 2000,
+      "Duration": 1500,
       "Value": "1401600"
     },
     {
       "PowerHint": "LAUNCH",
       "Node": "CPUBigPlusClusterMinFreq",
-      "Duration": 2000,
+      "Duration": 1500,
       "Value": "844800"
     },
     {
       "PowerHint": "LAUNCH",
-      "Node": "EnergyAware",
-      "Duration": 2000,
-      "Value": "0"
-    },
-    {
-      "PowerHint": "LAUNCH",
       "Node": "CPUBigClusterMinFreq",
-      "Duration": 2000,
+      "Duration": 1500,
       "Value": "710400"
     },
     {
       "PowerHint": "LAUNCH",
       "Node": "CPULittleClusterMinFreq",
-      "Duration": 2000,
+      "Duration": 1500,
       "Value": "300000"
     },
     {
       "PowerHint": "LAUNCH",
       "Node": "CPUBWHystTriggerCount",
-      "Duration": 2000,
+      "Duration": 1500,
       "Value": "0"
     },
     {
       "PowerHint": "LAUNCH",
       "Node": "CPUBWHystLength",
-      "Duration": 2000,
+      "Duration": 1500,
       "Value": "0"
     },
     {
       "PowerHint": "LAUNCH",
       "Node": "CPUBWHistMemory",
-      "Duration": 2000,
+      "Duration": 1500,
       "Value": "0"
     },
     {
       "PowerHint": "LAUNCH",
       "Node": "GPUForceClkOn",
-      "Duration": 2000,
+      "Duration": 1500,
       "Value": "1"
     },
     {
       "PowerHint": "LAUNCH",
       "Node": "GPUForceRailOn",
-      "Duration": 2000,
+      "Duration": 1500,
       "Value": "1"
     },
     {
       "PowerHint": "LAUNCH",
       "Node": "GPUIdleTimer",
-      "Duration": 2000,
+      "Duration": 1500,
       "Value": "58"
     },
     {

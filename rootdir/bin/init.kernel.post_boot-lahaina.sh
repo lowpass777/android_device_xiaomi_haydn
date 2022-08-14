@@ -75,24 +75,27 @@ echo 0-7 > /dev/cpuset/top-app/cpus
 echo 0-3 > /dev/cpuset/restricted/cpus
 
 #  Turn on EAS
-echo 1 /proc/sys/kernel/sched_energy_aware
+echo 0 /proc/sys/kernel/sched_energy_aware
+
+# Turn on DAMON
+echo 1 > /sys/module/damon_reclaim/parameters/enable
 
 # Disable cdsprpcd daemon
 setprop vendor.fastrpc.disable.cdsprpcd.daemon 1
 
 # configure governor settings for silver cluster
-echo "schedhorizon" > /sys/devices/system/cpu/cpufreq/policy0/scaling_governor
-echo 0 > /sys/devices/system/cpu/cpufreq/policy0/schedhorizon/down_rate_limit_us
-echo 1000 > /sys/devices/system/cpu/cpufreq/policy0/schedhorizon/up_rate_limit_us
+echo "schedutil" > /sys/devices/system/cpu/cpufreq/policy0/scaling_governor
+echo 0 > /sys/devices/system/cpu/cpufreq/policy0/schedutil/down_rate_limit_us
+echo 1000 > /sys/devices/system/cpu/cpufreq/policy0/schedutil/up_rate_limit_us
 
-echo "schedhorizon" > /sys/devices/system/cpu/cpufreq/policy4/scaling_governor
-echo 0 > /sys/devices/system/cpu/cpufreq/policy4/schedhorizon/down_rate_limit_us
-echo 1000 > /sys/devices/system/cpu/cpufreq/policy4/schedhorizon/up_rate_limit_us
+echo "schedutil" > /sys/devices/system/cpu/cpufreq/policy4/scaling_governor
+echo 0 > /sys/devices/system/cpu/cpufreq/policy4/schedutil/down_rate_limit_us
+echo 1000 > /sys/devices/system/cpu/cpufreq/policy4/schedutil/up_rate_limit_us
 
 # configure governor settings for gold+ cluster
-echo "schedhorizon" > /sys/devices/system/cpu/cpufreq/policy7/scaling_governor
-echo 0 > /sys/devices/system/cpu/cpufreq/policy7/schedhorizon/down_rate_limit_us
-echo 2000 > /sys/devices/system/cpu/cpufreq/policy7/schedhorizon/up_rate_limit_us
+echo "schedutil" > /sys/devices/system/cpu/cpufreq/policy7/scaling_governor
+echo 0 > /sys/devices/system/cpu/cpufreq/policy7/schedutil/down_rate_limit_us
+echo 2000 > /sys/devices/system/cpu/cpufreq/policy7/schedutil/up_rate_limit_us
 
 # configure bus-dcvs
 for device in /sys/devices/platform/soc

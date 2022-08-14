@@ -128,6 +128,7 @@ vendor.bluetooth.soc=hastings
 # Camera
 camera.disable_zsl_mode=true
 ro.hardware.camera=xiaomi
+persist.vendor.camera.perflock.enable=0
 
 # Chipset
 ro.soc.manufacturer=QTI
