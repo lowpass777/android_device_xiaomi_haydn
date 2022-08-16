@@ -28,9 +28,6 @@ $(call inherit-product-if-exists, vendor/xiaomi/haydn-miuicamera/products/miuica
 # Moto Dolby
 $(call inherit-product-if-exists, vendor/moto/dolby/config.mk)
 
-# Google Basic apps
-$(call inherit-product-if-exists, vendor/gapps/basic/config.mk)
-
 # A/B
 AB_OTA_POSTINSTALL_CONFIG += \
     RUN_POSTINSTALL_system=true \
@@ -175,28 +172,15 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/parts/privapp-permissions-parts.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp-permissions-parts.xml
 
-# Display
-PRODUCT_PACKAGES += \
-    android.hardware.graphics.mapper@3.0-impl-qti-display \
-    android.hardware.graphics.mapper@4.0-impl-qti-display \
-    android.hardware.memtrack@1.0-impl \
-    android.hardware.memtrack@1.0-service \
-    vendor.qti.hardware.display.allocator-service \
-    vendor.qti.hardware.display.composer-service \
-    vendor.qti.hardware.display.mapper@1.1.vendor \
-    vendor.qti.hardware.display.mapper@2.0.vendor
-
 PRODUCT_PACKAGES += \
     gralloc.default \
     memtrack.default 
 
 PRODUCT_PACKAGES += \
     libdisplayconfig.qti \
-    libdisplayconfig.qti.vendor
-
-PRODUCT_PACKAGES += \
-    vendor.display.config@1.15.vendor \
-    vendor.display.config@2.0.vendor
+    libdisplayconfig.qti.vendor \
+    libnl \
+    libwfdaac_vendor
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/display/display_id_4630946736638489730.xml:$(TARGET_COPY_OUT_VENDOR)/etc/displayconfig/display_id_4630946736638489730.xml \
@@ -271,12 +255,6 @@ PRODUCT_PACKAGES += \
 
 # HIDL
 PRODUCT_PACKAGES += \
-    android.hidl.base@1.0 \
-    android.hidl.base@1.0.vendor \
-    android.hidl.manager@1.0 \
-    android.hidl.manager@1.0.vendor
-
-PRODUCT_PACKAGES += \
     libhidltransport \
     libhidltransport.vendor \
     libhwbinder \
@@ -323,47 +301,25 @@ PRODUCT_PACKAGES += \
     android.hardware.gatekeeper@1.0.vendor \
     android.hardware.keymaster@4.1.vendor
 	
+# Codec2
+PRODUCT_PACKAGES += \
+    android.hardware.media.c2@1.0.vendor \
+    android.hardware.media.c2@1.1.vendor \
+    libcodec2_hidl@1.0.vendor \
+    libcodec2_vndk.vendor
+
 # Media
 PRODUCT_PACKAGES += \
-    libmm-omxcore \
     libOmxAacEnc \
     libOmxAmrEnc \
-    libOmxCore \
     libOmxEvrcEnc \
     libOmxG711Enc \
-    libOmxQcelp13Enc \
-    libstagefrighthw \
     libstagefright_omx \
-    libstagefright_foundation \
-    libOmxVdec \
-    libOmxVenc
-
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/media/init.qti.media.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.qti.media.sh \
-    $(LOCAL_PATH)/media/init.qti.media.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.qti.media.rc
-
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/media/media_codecs_vendor_audio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_vendor_audio.xml \
-    $(LOCAL_PATH)/media/media_codecs_dolby_audio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_dolby_audio.xml
-
-PRODUCT_COPY_FILES += \
-    frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_audio.xml \
-    frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_telephony.xml 
-
-PRODUCT_COPY_FILES += \
-    frameworks/av/media/libstagefright/data/media_codecs_google_c2.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_c2.xml \
-    frameworks/av/media/libstagefright/data/media_codecs_google_c2_audio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_c2_audio.xml \
-    frameworks/av/media/libstagefright/data/media_codecs_google_c2_video.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_c2_video.xml
+    libstagefright_foundation
 
 # Minijail
 PRODUCT_PACKAGES += \
-    libavservices_minijail \
-    libavservices_minijail.vendor \
-    libcodec2_hidl@1.1.vendor \
-    libavservices_minijail_vendor \
-    libcodec2_soft_common.vendor \
-    libsfplugin_ccodec_utils.vendor \
-    libstagefright_softomx.vendor
+    libavservices_minijail_vendor
 
 # Network
 PRODUCT_PACKAGES += \
@@ -416,6 +372,9 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/com.android.nfc_extras.xml:$(TARGET_COPY_OUT_ODM)/etc/permissions/sku_nfc/com.android.nfc_extras.xml \
     frameworks/native/data/etc/com.nxp.mifare.xml:$(TARGET_COPY_OUT_ODM)/etc/permissions/sku_nfc/com.nxp.mifare.xml
 
+# Platform
+TARGET_BOARD_PLATFORM := lahaina
+
 # Partitions
 PRODUCT_BUILD_SUPER_PARTITION := false
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
@@ -442,14 +401,15 @@ PRODUCT_SOONG_NAMESPACES += \
 # Public Libraries
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/public.libraries.txt:$(TARGET_COPY_OUT_VENDOR)/etc/public.libraries.txt
-	
-# QMI
-PRODUCT_PACKAGES += \
-    libqti_vndfwk_detect.vendor
 
 # Recovery
 PRODUCT_PACKAGES += \
     init.recovery.qcom.rc
+
+# Config Store
+PRODUCT_PACKAGES += \
+    android.hardware.configstore@1.0-service \
+    android.hardware.configstore@1.1-service 
 
 # RIL
 PRODUCT_PACKAGES += \
@@ -474,7 +434,14 @@ PRODUCT_COPY_FILES += \
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
-    $(LOCAL_PATH)
+    $(LOCAL_PATH) \
+    hardware/xiaomi
+
+# QTI
+TARGET_COMMON_QTI_COMPONENTS := \
+    av \
+    display \
+    media
 
 # Servicetracker
 PRODUCT_PACKAGES += \
@@ -484,14 +451,9 @@ PRODUCT_PACKAGES += \
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay \
-    $(LOCAL_PATH)/overlay-lineage
+    $(LOCAL_PATH)/overlay-p404
 
 PRODUCT_ENFORCE_RRO_TARGETS += *
-
-# Livedisplay
-PRODUCT_PACKAGES += \
-    vendor.lineage.livedisplay@2.0-service-sdm \
-    vendor.lineage.livedisplay@2.1-service.xiaomi_sm8350
 
 # Overlays-RRO
 PRODUCT_PACKAGES += \
@@ -550,14 +512,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/perf/thermal_info_config.json:$(TARGET_COPY_OUT_VENDOR)/etc/thermal_info_config.json
 
-# Touch
-PRODUCT_PACKAGES += \
-    vendor.lineage.touch@1.0-service.xiaomi_sm8350
-
-# Touchscreen
-PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml
-
 # Uevent
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/etc/ueventd.rc:$(TARGET_COPY_OUT_VENDOR)/etc/ueventd.rc
@@ -571,9 +525,17 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES_DEBUG += \
     update_engine_client
 
+# Touchscreen
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/firmware/focaltech_ts_fw.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/focaltech_ts_fw.bin \
+    $(LOCAL_PATH)/firmware/focaltech_ts_ht_fw.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/focaltech_ts_ht_fw.bin 
+
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml
+
 # USB
 PRODUCT_PACKAGES += \
-    android.hardware.usb@1.3-service-qti
+    android.hardware.usb@1.2-service-qti
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.usb.accessory.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.usb.accessory.xml \

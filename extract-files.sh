@@ -17,7 +17,7 @@ if [[ ! -d "${MY_DIR}" ]]; then MY_DIR="${PWD}"; fi
 
 ANDROID_ROOT="${MY_DIR}/../../.."
 
-HELPER="${ANDROID_ROOT}/tools/extract-utils/extract_utils.sh"
+HELPER="${ANDROID_ROOT}/vendor/404/build/tools/extract_utils.sh"
 if [ ! -f "${HELPER}" ]; then
     echo "Unable to find helper script at ${HELPER}"
     exit 1
@@ -58,16 +58,9 @@ function blob_fixup() {
         vendor/etc/camera/pureShot_parameter.xml)
             sed -i 's/=\([0-9]\+\)>/="\1">/g' "${2}"
             ;;
-        odm/etc/vintf/manifest/c2_manifest_xiaomi.xml)
-            sed -i 's|<hal format="hidl">|<hal format="hidl" override="true">|g' "${2}"
-            sed -i "/ozoaudio/d" "${2}"
-            ;;
         vendor/lib64/hw/camera.xiaomi.so)
             hexdump -ve '1/1 "%.2X"' "${2}" | sed "s/52070094/1F2003D5/g" | xxd -r -p > "${TMPDIR}/${1##*/}"
             mv "${TMPDIR}/${1##*/}" "${2}"
-            ;;
-        vendor/lib64/android.hardware.secure_element@1.0-impl.so)
-            "${PATCHELF}" --remove-needed "android.hidl.base@1.0.so" "${2}"
             ;;
     esac
 }

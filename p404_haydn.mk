@@ -1,6 +1,6 @@
 #
-# Copyright (C) 2020 The LineageOS Project
-#
+# Copyright (C) 2022 Project 404
+
 # SPDX-License-Identifier: Apache-2.0
 #
 
@@ -11,14 +11,15 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 # Inherit from haydn device
 $(call inherit-product, device/xiaomi/haydn/device.mk)
 
-# Inherit some common PixelExperience stuff.
-$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
+# Inherit from the 404 configuration.
+$(call inherit-product, vendor/404/configs/common.mk)
 TARGET_BOOT_ANIMATION_RES := 1080
-TARGET_SUPPORTS_QUICK_TAP := true
-TARGET_USES_AOSP_RECOVERY := true
+
+# Include GAPPS
+WITH_GAPPS := true
 
 # Device identifier. This must come after all inclusions.
-PRODUCT_NAME := lineage_haydn
+PRODUCT_NAME := p404_haydn
 PRODUCT_DEVICE := haydn
 PRODUCT_BRAND := Xiaomi
 PRODUCT_MODEL := M2012K11I

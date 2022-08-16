@@ -464,6 +464,58 @@
         <instance>default</instance>
     </interface>
 </hal>
+    <hal format="hidl" optional="true">
+        <name>com.fingerprints.extension</name>
+        <version>3.0</version>
+        <interface>
+            <name>IFingerprintNavigation</name>
+            <instance>default</instance>
+        </interface>
+        <interface>
+            <name>IFingerprintSensorTest</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="hidl" optional="true">
+        <name>vendor.xiaomi.hardware.fingerprintextension</name>
+        <version>1.0</version>
+        <interface>
+            <name>IXiaomiFingerprint</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="hidl" optional="true">
+        <name>vendor.qti.hardware.qdutils_disp</name>
+        <version>1.0</version>
+        <interface>
+            <name>IQdutilsDisp</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+   <hal format="hidl" optional="true">
+        <name>vendor.qti.diaghal</name>
+        <version>1.0</version>
+        <interface>
+            <name>Idiag</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="hidl" optional="true">
+         <name>com.dsi.ant</name>
+         <version>1.0</version>
+         <interface>
+             <name>IAnt</name>
+             <instance>default</instance>
+         </interface>
+    </hal>
+    <hal format="hidl" optional="true">
+        <name>vendor.qti.hardware.fm</name>
+        <version>1.0</version>
+        <interface>
+            <name>IFmHci</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
 <hal format="hidl" optional="true">
     <name>vendor.google.google_battery</name>
     <version>1.1</version>
@@ -534,6 +586,23 @@
         <version>1.0</version>
         <interface>
             <name>IDms</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="hidl" optional="true">
+        <name>vendor.qti.hardware.wifi.hostapd</name>
+        <version>1.0-3</version>
+        <interface>
+            <name>IHostapdVendor</name>
+            <instance>default</instance>
+            <instance>wigighostapd</instance>
+        </interface>
+    </hal>
+    <hal format="hidl" optional="true">
+        <name>vendor.qti.hardware.wifi.supplicant</name>
+        <version>2.0-3</version>
+        <interface>
+            <name>ISupplicantVendor</name>
             <instance>default</instance>
         </interface>
     </hal>

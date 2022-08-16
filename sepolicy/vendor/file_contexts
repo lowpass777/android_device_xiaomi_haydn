@@ -3,6 +3,12 @@
 /dev/elliptic(.*)?                    u:object_r:sound_device:s0
 /dev/mius(.*)?                        u:object_r:sound_device:s0
 
+# Firmware
+/bt_firmware(/.*)?                                          u:object_r:bt_firmware_file:s0
+/firmware(/.*)?                                             u:object_r:firmware_file:s0
+/persist(/.*)?                                              u:object_r:mnt_vendor_file:s0
+/dsp(/.*)?                                                  u:object_r:adsprpcd_file:s0
+
 # Battery secret
 /vendor/bin/batteryd		u:object_r:batteryd_exec:s0
 /vendor/bin/batterysecret                                            u:object_r:batterysecret_exec:s0
@@ -29,9 +35,6 @@
 
 # IR
 /dev/ir_spi                                                          u:object_r:vendor_ir_device:s0
-
-# Livedisplay
-/vendor/bin/hw/vendor\.lineage\.livedisplay@2\.1-service\.xiaomi_sm8350             u:object_r:hal_lineage_livedisplay_qti_exec:s0
 
 # Media
 /vendor/bin/hw/dolbycodec2                           u:object_r:mediacodec_exec:s0
@@ -63,10 +66,6 @@
 /vendor/bin/hw/android\.hardware\.thermal@2\.0-service\.lisa                     u:object_r:hal_thermal_default_exec:s0
 /vendor/bin/mi_thermald                              u:object_r:mi_thermald_exec:s0
 /data/vendor/thermal(/.*)?                           u:object_r:thermal_data_file:s0
-
-# Touch
-/vendor/bin/hw/vendor\.lineage\.touch@1\.0-service\.xiaomi_sm8350         u:object_r:hal_lineage_touch_default_exec:s0
-/sys/devices/virtual/touch/touch_dev/bump_sample_rate                    u:object_r:sysfs_htsr:s0
 
 # Vibrator
 /vendor/bin/hw/vendor\.qti\.hardware\.vibrator\.service\.haydn                            u:object_r:hal_vibrator_default_exec:s0

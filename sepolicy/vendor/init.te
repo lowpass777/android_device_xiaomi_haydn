@@ -15,7 +15,6 @@ allow init vendor_touchfeature_device:chr_file { ioctl  open  read write };
 allow init vendor_latency_device:chr_file { open  write };
 allow init adsprpcd_file:file mounton;
 allow init hal_graphics_composer_default:unix_stream_socket { connectto };
-allow init flipendo:binder { transfer };
 allow init hal_power_service:service_manager { find };
 allow init hal_thermal_hwservice:hwservice_manager { add  find };
 allow init hidl_base_hwservice:hwservice_manager { add };

@@ -10,6 +10,7 @@ DEVICE_PATH := device/xiaomi/haydn
 
 BUILD_BROKEN_DUP_RULES := true
 BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
+BUILD_BROKEN_USES_BUILD_COPY_HEADERS := true
 
 # Inherit from proprietary files
 include vendor/xiaomi/haydn/BoardConfigVendor.mk
@@ -42,6 +43,9 @@ AB_OTA_PARTITIONS += \
 
 # ANT+
 BOARD_ANT_WIRELESS_DEVICE := "qualcomm-hidl"
+
+# APEX image
+DEXPREOPT_GENERATE_APEX_IMAGE := true
 
 # Architecture
 TARGET_ARCH := arm64
@@ -77,15 +81,6 @@ TARGET_USE_QTI_BT_STACK := true
 TARGET_BOOTLOADER_BOARD_NAME := lahaina
 TARGET_NO_BOOTLOADER := true
 
-# Display
-TARGET_USES_DISPLAY_RENDER_INTENTS := true
-TARGET_USES_GRALLOC1 := true
-TARGET_USES_GRALLOC4 := true
-TARGET_USES_HWC2 := true
-TARGET_USES_ION := true
-TARGET_USES_VULKAN := true
-TARGET_ENABLE_BLUR := true
-
 # Filesystem
 TARGET_FS_CONFIG_GEN := $(DEVICE_PATH)/configs/config.fs
 
@@ -95,7 +90,7 @@ LOC_HIDL_VERSION := 4.0
 
 # HIDL
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := $(DEVICE_PATH)/configs/hidl/framework_compatibility_matrix.xml
-DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += vendor/lineage/config/device_framework_matrix.xml
+DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += vendor/404/configs/device_framework_matrix.xml
 DEVICE_MANIFEST_FILE := $(DEVICE_PATH)/configs/hidl/manifest.xml
 DEVICE_MATRIX_FILE := $(DEVICE_PATH)/configs/hidl/compatibility_matrix.xml
 
@@ -112,18 +107,19 @@ BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_IMAGE_NAME := Image
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_KERNEL_SEPARATED_DTBO := true
-BOARD_BOOT_HEADER_VERSION := 4
+BOARD_BOOT_HEADER_VERSION := 3
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
 KERNEL_LD := LD=ld.lld
-KERNEL_SUPPORTS_LLVM_TOOLS := true
 TARGET_KERNEL_ADDITIONAL_FLAGS := LLVM=1 LLVM_IAS=1 AR=llvm-ar NM=llvm-nm OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump STRIP=llvm-strip
+TARGET_COMPILE_WITH_MSM_KERNEL := true
 TARGET_KERNEL_CLANG_COMPILE := true
 TARGET_KERNEL_CLANG_VERSION := r458507
 TARGET_KERNEL_CLANG_PATH := $(shell pwd)/prebuilts/clang/host/linux-x86/clang-$(TARGET_KERNEL_CLANG_VERSION)
 TARGET_KERNEL_CONFIG := vendor/haydn-qgki_defconfig
 TARGET_KERNEL_SOURCE := kernel/xiaomi/haydn
-BOARD_KERNEL_CMDLINE += androidboot.console=ttyMSM0 androidboot.hardware=qcom androidboot.usbcontroller=a600000.dwc3 cgroup.memory=nokmem,nosocket console=ttyMSM0,115200n8 loop.max_part=7 msm_rtb.filter=0x237 service_locator.enable=1 swiotlb=noforce pcie_ports=compat iptable_raw.raw_before_defrag=1 ip6table_raw.raw_before_defrag=1
+BOARD_KERNEL_CMDLINE += androidboot.console=ttyMSM0 androidboot.hardware=qcom androidboot.usbcontroller=a600000.dwc3 cgroup.memory=nokmem,nosocket console=ttyMSM0,115200n8 loop.max_part=7 msm_rtb.filter=0x237 service_locator.enable=1 swiotlb=noforce pcie_ports=compat iptable_raw.raw_before_defrag=1 ip6table_raw.raw_before_defrag=1 androidboot.selinux=permissive
 BOARD_RAMDISK_USE_LZ4 := true
+TARGET_KERNEL_ADDITIONAL_FLAGS += HOSTCFLAGS="-fuse-ld=lld -Wno-unused-command-line-argument"
 
 # Kernel modules
 BOOT_KERNEL_MODULES := \
@@ -135,6 +131,10 @@ BOARD_VENDOR_RAMDISK_RECOVERY_KERNEL_MODULES_LOAD := $(BOOT_KERNEL_MODULES)
 
 # NFC
 TARGET_USES_NQ_NFC := true
+
+SOONG_CONFIG_NAMESPACES += ufsbsg
+SOONG_CONFIG_ufsbsg += ufsframework
+SOONG_CONFIG_ufsbsg_ufsframework := bsg
 
 # Partitions
 BOARD_QTI_DYNAMIC_PARTITIONS_PARTITION_LIST := odm system system_ext vendor product
@@ -178,22 +178,14 @@ BOARD_FLASH_BLOCK_SIZE := 131072
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
 
-# Platform
-TARGET_BOARD_PLATFORM := lahaina
-
 # Properties
 TARGET_ODM_PROP += $(DEVICE_PATH)/configs/properties/odm.prop
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/configs/properties/system.prop
 TARGET_VENDOR_PROP += $(DEVICE_PATH)/configs/properties/vendor.prop
 
-# QCOM
-BOARD_USES_QCOM_HARDWARE := true
-TARGET_FWK_SUPPORTS_FULL_VALUEADDS := true
-
 # Recovery
 BOARD_INCLUDE_DTB_IN_BOOTIMG := true
 BOARD_MOVE_RECOVERY_RESOURCES_TO_VENDOR_BOOT := true
-BOARD_INCLUDE_RECOVERY_RAMDISK_IN_VENDOR_BOOT := true
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/etc/fstab.qcom
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 TARGET_USES_MKE2FS := true
@@ -203,19 +195,16 @@ ENABLE_VENDOR_RIL_SERVICE := true
 # Screen density
 TARGET_SCREEN_DENSITY := 440
 
-# Security patch level
-VENDOR_SECURITY_PATCH := 2022-08-05
-
 # Sepolicy
 include device/qcom/sepolicy_vndr/SEPolicy.mk
 
 SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/public
-BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor
+BOARD_VENDOR_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor
 SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/private
-BOARD_SEPOLICY_DIRS += hardware/google/pixel-sepolicy/power-libperfmgr
-BOARD_SEPOLICY_DIRS += hardware/google/pixel-sepolicy/turbo_adapter
-BOARD_SEPOLICY_DIRS += hardware/google/pixel-sepolicy/thermal
-BOARD_SEPOLICY_DIRS += hardware/google/pixel-sepolicy/powerstats
+BOARD_VENDOR_SEPOLICY_DIRS += hardware/google/pixel-sepolicy/power-libperfmgr
+BOARD_VENDOR_SEPOLICY_DIRS += hardware/google/pixel-sepolicy/turbo_adapter
+BOARD_VENDOR_SEPOLICY_DIRS += hardware/google/pixel-sepolicy/thermal
+BOARD_VENDOR_SEPOLICY_DIRS += hardware/google/pixel-sepolicy/powerstats
 
 SELINUX_IGNORE_NEVERALLOWS := true
 
@@ -238,6 +227,8 @@ BOARD_HOSTAPD_DRIVER := NL80211
 BOARD_HOSTAPD_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
 BOARD_WPA_SUPPLICANT_DRIVER := NL80211
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
+CONFIG_ACS := true
+CONFIG_IEEE80211AX := true
 QC_WIFI_HIDL_FEATURE_DUAL_AP := true
 WIFI_DRIVER_DEFAULT := wlan
 WIFI_DRIVER_STATE_CTRL_PARAM := "/dev/wlan"

@@ -33,10 +33,8 @@ vendor.iop.enable_uxe=0
 
 # Media
 media.settings.xml=/vendor/etc/media_profiles_vendor.xml
-ro.media.recorder-max-base-layer-fps=60
 
-# QC framework value-adds
-ro.vendor.qti.va_aosp.support=1
+ro.vendor.qti.sys.fw.bservice_enable=true
 
 # Zygote
 persist.device_config.runtime_native.usap_pool_enabled=true

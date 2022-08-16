@@ -1,5 +1,5 @@
-<manifest version="2.0" type="device" target-level="5">
-    <kernel target-level="5" />
+<manifest version="2.0" type="device" target-level="4">
+    <kernel target-level="5"/>
     <hal format="hidl">
         <name>android.hardware.audio</name>
         <transport>hwbinder</transport>
@@ -456,6 +456,33 @@
         </interface>
     </hal>
     <hal format="hidl">
+        <name>vendor.qti.hardware.fm</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>IFmHci</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="hidl">
+        <name>com.dsi.ant</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>IAnt</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="hidl" optional="true">
+        <name>android.hardware.usb.gadget</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>IUsbGadget</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="hidl">
         <name>vendor.qti.ims.callinfo</name>
         <transport>hwbinder</transport>
         <version>1.0</version>
@@ -518,6 +545,15 @@
         </interface>
     </hal>
     <hal format="hidl">
+        <name>android.hardware.configstore</name>
+        <transport>hwbinder</transport>
+        <version>1.1</version>
+        <interface>
+            <name>ISurfaceFlingerConfigs</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="hidl">
         <name>vendor.lineage.power</name>
         <transport>hwbinder</transport>
         <interface>
@@ -525,6 +561,17 @@
             <instance>default</instance>
         </interface>
     </hal>
+   <!-- Codec2 HAl service -->
+   <hal format="hidl" optional="true">
+       <name>android.hardware.media.c2</name>
+       <version>1.0</version>
+       <interface>
+           <name>IComponentStore</name>
+           <instance>default</instance>
+           <instance>dolby</instance>
+           <instance>software</instance>
+       </interface>
+   </hal>
     <hal format="hidl" optional="true">
         <name>vendor.qti.hardware.servicetracker</name>
         <version>1.2</version>
