@@ -1,3 +1,8 @@
 allow platform_app default_android_hwservice:hwservice_manager { find };
 allow platform_app audio_config_prop:file { read };
 allow platform_app vendor_adsprpc_prop:file { getattr read open };
+allow platform_app nfc_service:service_manager find;
+# Fix sepolicy issues for Battery temperature , GPU Frequency and utilization
+allow platform_app sysfs_battery_supply:dir { search };
+allow platform_app sysfs_battery_supply:file { getattr  open  read };
+allow platform_app sysfs_kgsl:file { getattr  open  read };

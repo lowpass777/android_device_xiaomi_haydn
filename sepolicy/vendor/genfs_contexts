@@ -6,18 +6,8 @@ genfscon sysfs /devices/platform/soc/soc:fingerprint_fpc/power_cfg              
 genfscon sysfs /devices/platform/soc/soc:fingerprint_fpc/request_vreg           u:object_r:vendor_sysfs_fingerprint:s0
 genfscon sysfs /devices/platform/soc/soc:fingerprint_fpc/wakeup_enable          u:object_r:vendor_sysfs_fingerprint:s0
 
-# DSP
-genfscon sysfs /kernel/boot_cdsp/boot                                           u:object_r:sysfs_msm_boot:s0
-
-# Display
-genfscon sysfs /devices/platform/soc/soc:qcom,dsi-display-primary u:object_r:vendor_sysfs_graphics:s0
-
 # Power
 genfscon sysfs /class/qcom-battery                                              u:object_r:vendor_sysfs_battery_supply:s0
-genfscon sysfs /devices/platform/soc/soc:qcom,pmic_glink/soc:qcom,pmic_glink:qcom,ucsi/typec/port0/data_role                            u:object_r:vendor_sysfs_battery_supply:s0
-
-# kmsg
-genfscon proc /last_kmsg                                                        u:object_r:proc_last_kmsg:s0
 
 # Wakeup
 genfscon sysfs /devices/platform/dummy_hcd.0/usb1/wakeup                                                                                u:object_r:sysfs_wakeup:s0

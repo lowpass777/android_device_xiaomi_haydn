@@ -1,7 +1,0 @@
-allow surfaceflinger vendor_firmware_file:dir { search open read };
-allow surfaceflinger vendor_firmware_file:file { read open getattr };
-allow surfaceflinger vendor_file:file { read open getattr map execute };
-allow surfaceflinger vendor_hal_qspmhal_default:binder { call };
-allow surfaceflinger hal_graphics_composer_default:file { read open getattr map execute };
-allow surfaceflinger init:binder { call }; 
-allow surfaceflinger mediacodec:binder call; 

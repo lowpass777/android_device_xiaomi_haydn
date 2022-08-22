@@ -36,7 +36,6 @@ get_prop(vendor_init, vendor_xiaomi_prop)
 
 # Power HAL
 set_prop(vendor_init, power_prop)
-set_prop(vendor_init, vendor_power_prop)
 
 allow vendor_init proc_dirty:file w_file_perms;
 allow vendor_init proc_dirty_ratio:file w_file_perms;

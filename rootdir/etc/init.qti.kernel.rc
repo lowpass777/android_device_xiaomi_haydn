@@ -80,8 +80,3 @@ service vendor.msm_irqbalance /vendor/bin/msm_irqbalance -f /system/vendor/etc/m
     class core
     user root
     group root
-
-service vendor.thermal-engine /vendor/bin/thermal-engine
-    class main
-    user root
-    group root

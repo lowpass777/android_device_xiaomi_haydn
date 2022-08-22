@@ -25,13 +25,7 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
-on enable-low-power
-    # Enable PowerHAL hint processing
-    setprop vendor.powerhal.init 1
-
 on property:sys.boot_completed=1
-    trigger enable-low-power
-
     # Enable EAS
     write /proc/sys/kernel/sched_energy_aware 0
 

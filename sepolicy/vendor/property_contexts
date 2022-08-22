@@ -16,20 +16,3 @@ persist.vendor.security.spuari.              u:object_r:vendor_security_spuari_p
 # Mlipay
 persist.vendor.sys.pay.                 u:object_r:vendor_mlipay_prop:s0
 persist.vendor.sys.provision.status     u:object_r:vendor_mlipay_prop:s0
-
-# Aware
-ro.vendor.aware_available          u:object_r:vendor_aware_available_prop:s0
-
-# Power
-vendor.powerhal.state                           u:object_r:vendor_power_prop:s0
-vendor.powerhal.audio                           u:object_r:vendor_power_prop:s0
-vendor.powerhal.lpm                             u:object_r:vendor_power_prop:s0
-vendor.powerhal.init                            u:object_r:vendor_power_prop:s0
-vendor.powerhal.rendering                       u:object_r:vendor_power_prop:s0
-vendor.powerhal.dalvik.                		    u:object_r:vendor_power_prop:s0
-
-# Insmod
-vendor.all.devices.ready        u:object_r:vendor_device_prop:s0
-
-# Thermal
-vendor.sys.thermal.                      u:object_r:vendor_thermal_normal_prop:s0

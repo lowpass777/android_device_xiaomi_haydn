@@ -44,9 +44,6 @@ AB_OTA_PARTITIONS += \
 # ANT+
 BOARD_ANT_WIRELESS_DEVICE := "qualcomm-hidl"
 
-# APEX image
-DEXPREOPT_GENERATE_APEX_IMAGE := true
-
 # Architecture
 TARGET_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-2a-dotprod
@@ -73,13 +70,18 @@ BOARD_SUPPORTS_SOUND_TRIGGER := true
 
 USE_CUSTOM_AUDIO_POLICY := 1
 
-# Bluetooth
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(DEVICE_PATH)/bluetooth/include
-TARGET_USE_QTI_BT_STACK := true
-
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := lahaina
 TARGET_NO_BOOTLOADER := true
+
+# Display
+TARGET_USES_DISPLAY_RENDER_INTENTS := true
+TARGET_USES_GRALLOC1 := true
+TARGET_USES_GRALLOC4 := true
+TARGET_USES_HWC2 := true
+TARGET_USES_ION := true
+TARGET_USES_VULKAN := true
+TARGET_ENABLE_BLUR := true
 
 # Filesystem
 TARGET_FS_CONFIG_GEN := $(DEVICE_PATH)/configs/config.fs
@@ -89,14 +91,16 @@ BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := default
 LOC_HIDL_VERSION := 4.0
 
 # HIDL
-DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := $(DEVICE_PATH)/configs/hidl/framework_compatibility_matrix.xml
-DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += vendor/404/configs/device_framework_matrix.xml
-DEVICE_MANIFEST_FILE := $(DEVICE_PATH)/configs/hidl/manifest.xml
-DEVICE_MATRIX_FILE := $(DEVICE_PATH)/configs/hidl/compatibility_matrix.xml
+DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := \
+    $(DEVICE_PATH)/configs/vintf/vendor_framework_compatibility_matrix.xml \
+    vendor/qcom/opensource/core-utils/vendor_framework_compatibility_matrix.xml
+
+DEVICE_MANIFEST_FILE := $(DEVICE_PATH)/configs/vintf/manifest.xml
+DEVICE_MATRIX_FILE := device/qcom/common/compatibility_matrix.xml
 
 ODM_MANIFEST_SKUS += nfc
 ODM_MANIFEST_NFC_FILES := \
-    $(DEVICE_PATH)/configs/hidl/manifest-nfc.xml
+    $(DEVICE_PATH)/configs/vintf/manifest-nfc.xml
 
 # Init
 TARGET_INIT_VENDOR_LIB := //$(DEVICE_PATH):libinit_haydn
@@ -110,6 +114,7 @@ BOARD_KERNEL_SEPARATED_DTBO := true
 BOARD_BOOT_HEADER_VERSION := 3
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
 KERNEL_LD := LD=ld.lld
+KERNEL_SUPPORTS_LLVM_TOOLS := true
 TARGET_KERNEL_ADDITIONAL_FLAGS := LLVM=1 LLVM_IAS=1 AR=llvm-ar NM=llvm-nm OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump STRIP=llvm-strip
 TARGET_COMPILE_WITH_MSM_KERNEL := true
 TARGET_KERNEL_CLANG_COMPILE := true
@@ -117,9 +122,12 @@ TARGET_KERNEL_CLANG_VERSION := r458507
 TARGET_KERNEL_CLANG_PATH := $(shell pwd)/prebuilts/clang/host/linux-x86/clang-$(TARGET_KERNEL_CLANG_VERSION)
 TARGET_KERNEL_CONFIG := vendor/haydn-qgki_defconfig
 TARGET_KERNEL_SOURCE := kernel/xiaomi/haydn
-BOARD_KERNEL_CMDLINE += androidboot.console=ttyMSM0 androidboot.hardware=qcom androidboot.usbcontroller=a600000.dwc3 cgroup.memory=nokmem,nosocket console=ttyMSM0,115200n8 loop.max_part=7 msm_rtb.filter=0x237 service_locator.enable=1 swiotlb=noforce pcie_ports=compat iptable_raw.raw_before_defrag=1 ip6table_raw.raw_before_defrag=1 androidboot.selinux=permissive
+BOARD_KERNEL_CMDLINE += androidboot.console=ttyMSM0 androidboot.hardware=qcom androidboot.usbcontroller=a600000.dwc3 cgroup.memory=nokmem,nosocket console=ttyMSM0,115200n8 loop.max_part=7 msm_rtb.filter=0x237 service_locator.enable=1 swiotlb=noforce pcie_ports=compat iptable_raw.raw_before_defrag=1 ip6table_raw.raw_before_defrag=1
 BOARD_RAMDISK_USE_LZ4 := true
-TARGET_KERNEL_ADDITIONAL_FLAGS += HOSTCFLAGS="-fuse-ld=lld -Wno-unused-command-line-argument"
+
+SOONG_CONFIG_NAMESPACES += ufsbsg
+SOONG_CONFIG_ufsbsg += ufsframework
+SOONG_CONFIG_ufsbsg_ufsframework := bsg
 
 # Kernel modules
 BOOT_KERNEL_MODULES := \
@@ -131,10 +139,6 @@ BOARD_VENDOR_RAMDISK_RECOVERY_KERNEL_MODULES_LOAD := $(BOOT_KERNEL_MODULES)
 
 # NFC
 TARGET_USES_NQ_NFC := true
-
-SOONG_CONFIG_NAMESPACES += ufsbsg
-SOONG_CONFIG_ufsbsg += ufsframework
-SOONG_CONFIG_ufsbsg_ufsframework := bsg
 
 # Partitions
 BOARD_QTI_DYNAMIC_PARTITIONS_PARTITION_LIST := odm system system_ext vendor product
@@ -183,14 +187,15 @@ TARGET_ODM_PROP += $(DEVICE_PATH)/configs/properties/odm.prop
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/configs/properties/system.prop
 TARGET_VENDOR_PROP += $(DEVICE_PATH)/configs/properties/vendor.prop
 
+# Power
+TARGET_POWERHAL_MODE_EXT := $(DEVICE_PATH)/power/power-mode.cpp
+
 # Recovery
 BOARD_INCLUDE_DTB_IN_BOOTIMG := true
-BOARD_MOVE_RECOVERY_RESOURCES_TO_VENDOR_BOOT := true
+BOARD_USES_RECOVERY_AS_BOOT := true
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/etc/fstab.qcom
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 TARGET_USES_MKE2FS := true
-# RIL
-ENABLE_VENDOR_RIL_SERVICE := true
 
 # Screen density
 TARGET_SCREEN_DENSITY := 440
@@ -198,13 +203,9 @@ TARGET_SCREEN_DENSITY := 440
 # Sepolicy
 include device/qcom/sepolicy_vndr/SEPolicy.mk
 
+SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/private
 SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/public
 BOARD_VENDOR_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor
-SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/private
-BOARD_VENDOR_SEPOLICY_DIRS += hardware/google/pixel-sepolicy/power-libperfmgr
-BOARD_VENDOR_SEPOLICY_DIRS += hardware/google/pixel-sepolicy/turbo_adapter
-BOARD_VENDOR_SEPOLICY_DIRS += hardware/google/pixel-sepolicy/thermal
-BOARD_VENDOR_SEPOLICY_DIRS += hardware/google/pixel-sepolicy/powerstats
 
 SELINUX_IGNORE_NEVERALLOWS := true
 
@@ -227,8 +228,6 @@ BOARD_HOSTAPD_DRIVER := NL80211
 BOARD_HOSTAPD_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
 BOARD_WPA_SUPPLICANT_DRIVER := NL80211
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
-CONFIG_ACS := true
-CONFIG_IEEE80211AX := true
 QC_WIFI_HIDL_FEATURE_DUAL_AP := true
 WIFI_DRIVER_DEFAULT := wlan
 WIFI_DRIVER_STATE_CTRL_PARAM := "/dev/wlan"

@@ -117,6 +117,7 @@ persist.vendor.bt.aac_frm_ctl.enabled=true
 persist.vendor.bt.aac_vbr_frm_ctl.enabled=true
 persist.vendor.qcom.bluetooth.a2dp_mcast_test.enabled=false
 persist.vendor.qcom.bluetooth.a2dp_offload_cap=sbc-aptx-aptxtws-aptxhd-aac-ldac-aptxadaptiver2
+persist.vendor.bt.a2dp.mac_whitelist=false
 persist.vendor.qcom.bluetooth.aac_frm_ctl.enabled=true
 persist.vendor.qcom.bluetooth.aac_vbr_ctl.enabled=true
 persist.vendor.qcom.bluetooth.aptxadaptiver2_1_support=true
@@ -134,9 +135,6 @@ persist.vendor.camera.perflock.enable=0
 ro.soc.manufacturer=QTI
 ro.soc.model=SM8350
 
-# CNE
-persist.vendor.cne.feature=1
-
 # Crypto
 ro.crypto.dm_default_key.options_format.version=2
 ro.crypto.volume.metadata.method=dm-default-key
@@ -150,8 +148,6 @@ dalvik.vm.dex2oat-threads=8
 dalvik.vm.dex2oat64.enabled=true
 
 # DPM
-persist.vendor.dpm.feature=1
-persist.vendor.dpm.idletimer.mode=default
 persist.vendor.dpm.nsrm.bkg.evt=3955
 persist.vendor.dpmhalservice.enable=1
 
@@ -170,9 +166,11 @@ vendor.gatekeeper.disable_spu=true
 
 # Graphics
 debug.egl.hw=0
+debug.hwui.renderer=skiagl
 debug.mdpcomp.logs=0
 debug.sf.disable_client_composition_cache=1
 debug.sf.enable_advanced_sf_phase_offset=1
+debug.renderengine.backend=skiaglthreaded
 debug.sf.high_fps_early_gl_phase_offset_ns=-2000000
 debug.sf.high_fps_early_phase_offset_ns=-4000000
 debug.sf.high_fps_late_app_phase_offset_ns=1000000
@@ -258,36 +256,27 @@ vendor.media.target_variant=_lahaina
 ro.vendor.extension_library=libqti-perfd-client.so
 ro.vendor.perf.scroll_opt=1
 
+# Qcom
+ro.vendor.qti.sys.fw.bservice_enable=true
+
 # Radio
 DEVICE_PROVISIONED=1
 keyguard.no_require_sim=true
-persist.radio.multisim.config=dsds
-persist.vendor.data.mode=concurrent
 persist.vendor.data.iwlan.enable=true
-persist.vendor.radio.apm_sim_not_pwdn=1
 persist.vendor.radio.atfwd.start=true
-persist.vendor.radio.custom_ecc=1
 persist.vendor.radio.data_ltd_sys_ind=1
 persist.vendor.radio.dynamic_load_mbn=3
 persist.vendor.radio.dynamic_sar=1
 persist.vendor.radio.enable_temp_dds=true
-persist.vendor.radio.enableadvancedscan=true
 persist.vendor.radio.force_ltd_sys_ind=1
 persist.vendor.radio.force_on_dc=true
 persist.vendor.radio.hidl_dev_service=true
 persist.vendor.radio.manual_nw_rej_ct=1
-persist.vendor.radio.mbn_trace=true
-persist.vendor.radio.procedure_bytes=SKIP
-persist.vendor.radio.rat_on=combine								  
-persist.vendor.radio.sib16_support=1
+persist.vendor.radio.mbn_trace=true							  
 persist.vendor.radio.ucdetect.usb=true
-ril.subscription.types=NV,RUIM
 ro.telephony.default_cdma_sub=0
-ro.telephony.default_network=33,33
 ro.telephony.call_ring.multiple=false
 ro.vendor.radio.5g=3
-ro.vendor.use_data_netmgrd=true
-telephony.lteOnCdmaDevice=1
 persist.vendor.sys.cnd.iwlan=1
 
 # Sensors

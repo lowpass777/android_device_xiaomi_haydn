@@ -22,5 +22,5 @@ allow init init:binder { call  transfer };
 allow init init:netlink_kobject_uevent_socket { getopt  setopt };
 allow init system_server:binder { call };
 allow init sysfs:file { write };
-
-
+allow init sysfs:file { open };
+allow init system_file:file { execute_no_trans };

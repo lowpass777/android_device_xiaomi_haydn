@@ -18,10 +18,7 @@
 /mnt/vendor/persist/camera(/.*)?   u:object_r:camera_persist_file:s0
 
 # Display
-/dev/xiaomi-touch                                                    u:object_r:touchfeature_device:s0
-
-# Health
-/vendor/bin/hw/android\.hardware\.health@2\.1-service u:object_r:hal_health_default_exec:s0
+/dev/xiaomi-touch                                                  u:object_r:touchfeature_device:s0
 
 # Fingerprint
 /data/vendor/fpdump(/.*)?                                           u:object_r:vendor_fingerprint_data_file:s0
@@ -36,20 +33,11 @@
 # IR
 /dev/ir_spi                                                          u:object_r:vendor_ir_device:s0
 
-# Media
-/vendor/bin/hw/dolbycodec2                           u:object_r:mediacodec_exec:s0
-
-# MI_DISPLAY
-/sys/devices/virtual/mi_display/disp_feature/disp-DSI-+[0-1](/.*)?	u:object_r:vendor_sysfs_graphics:s0
-
 # Mlipay
 /(vendor|system/vendor)/bin/mlipayd@1.1          u:object_r:hal_mlipay_default_exec:s0
 
 # Persist subsystem
 /mnt/vendor/persist/subsys(/.*)?                                  u:object_r:persist_subsys_file:s0
-
-# Power
-/vendor/bin/hw/android\.hardware\.power-service\.xiaomi-libperfmgr      u:object_r:hal_power_default_exec:s0
 
 # Proximity
 /sys/bus/iio/devices                                                                                                            u:object_r:vendor_sysfs_iio:s0
@@ -62,10 +50,13 @@
 # Sensors
 /vendor/bin/hw/android\.hardware\.sensors@2.1-service\.haydn-multihal                     u:object_r:hal_sensors_default_exec:s0
 
+
+# Media
+/vendor/bin/hw/dolbycodec2                           u:object_r:mediacodec_exec:s0
+
 # Thermal
-/vendor/bin/hw/android\.hardware\.thermal@2\.0-service\.lisa                     u:object_r:hal_thermal_default_exec:s0
-/vendor/bin/mi_thermald                              u:object_r:mi_thermald_exec:s0
 /data/vendor/thermal(/.*)?                           u:object_r:thermal_data_file:s0
+/vendor/bin/mi_thermald                              u:object_r:mi_thermald_exec:s0
 
 # Vibrator
 /vendor/bin/hw/vendor\.qti\.hardware\.vibrator\.service\.haydn                            u:object_r:hal_vibrator_default_exec:s0

@@ -235,6 +235,8 @@ if [ -f /sys/devices/soc0/select_image ]; then
 	echo $oem_version > /sys/devices/soc0/image_crm_version
 fi
 
+setprop vendor.post_boot.parsed 1
+
 # UFS add component info
 UFS_PN=`cat /sys/devices/platform/soc/1d84000.ufshc/string_descriptors/product_name`
 UFS_VENDOR=`cat /sys/devices/platform/soc/1d84000.ufshc/string_descriptors/manufacturer_name`
@@ -245,4 +247,3 @@ echo ${UFS_INFO}> /sys/project_info/add_component
 echo 0 > /sys/class/scsi_host/host0/../../../clkscale_enable
 
 pm disable com.google.android.gms/.chimera.GmsIntentOperationService
-#

@@ -18,6 +18,9 @@ TARGET_BOOT_ANIMATION_RES := 1080
 # Include GAPPS
 WITH_GAPPS := true
 
+# P404 stuffs
+TARGET_SHIP_WITH_MATLOG := true
+
 # Device identifier. This must come after all inclusions.
 PRODUCT_NAME := p404_haydn
 PRODUCT_DEVICE := haydn

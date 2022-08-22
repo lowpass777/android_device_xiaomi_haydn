@@ -1,8 +1,7 @@
 soong_namespace {
     imports: [
         "hardware/qcom/bootctrl",
-        "hardware/google/interfaces",
-        "hardware/xiaomi"
+        "hardware/xiaomi",
     ],
 }
 
